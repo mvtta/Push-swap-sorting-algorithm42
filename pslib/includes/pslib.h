@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/05/25 23:27:55 by user             ###   ########.fr       */
+/*   Updated: 2021/05/26 13:33:53 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef struct 	s_linked_list
-{
-	struct t_list *head;
-}				t_linked_list;
 
 /*
 ** Part 1 - Libc functions
@@ -49,5 +45,11 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 char			**ft_split(char const *s, char c);
+
+/*
+**DLL costum funcs
+*/
+
+t_list* new_node(int data);
 
 #endif
