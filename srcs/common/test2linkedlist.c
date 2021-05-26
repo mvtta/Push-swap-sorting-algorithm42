@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   test2linkedlist.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/23 20:43:20 by mvaldeta          #+#    #+#             */
+/*   Created: 2021/05/25 20:52:58 by user              #+#    #+#             */
 /*   Updated: 2021/05/25 23:27:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,17 +15,26 @@
 #include <stdlib.h>
 #include "/Users/mvaldeta/02.push_swap/pslib/includes/pslib.h"
 
-int		main(int ac, char **av)
+t_list* new_node(int data)
 {
-	int i = 1;	
-	t_linked_list *stack_a;
+    t_list *new;
+    
+    new = malloc(sizeof(t_list));
+    new->value = data;
+    new->prev = NULL;
+    new->next = NULL;
 
-	*stack_a = new_linked
-
-	while(av[i])
-	{
-		new_node(ft_atoi(av[1]));
-	}
-	
-	return(0);
+    return(new);
 }
+
+t_linked_list* new_linked_list(int value)
+{
+    t_list *a;
+
+    a = new_node(value);
+    t_linked_list *l = malloc(sizeof(t_linked_list));
+    l->head = a;
+
+    return(l);
+}
+

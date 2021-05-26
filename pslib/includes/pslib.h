@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/05/23 20:37:40 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/05/25 23:27:55 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,15 @@
 
 typedef struct	s_list
 {
-	void			*content;
+	int				value;
+	struct s_list 	*prev;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct 	s_linked_list
+{
+	struct t_list *head;
+}				t_linked_list;
 
 /*
 ** Part 1 - Libc functions
