@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/05/26 19:39:35 by user             ###   ########.fr       */
+/*   Updated: 2021/05/29 10:26:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ typedef struct	s_list
 	struct s_list 	*prev;
 	struct s_list	*next;
 }				t_list;
-
-typedef	struct a_major_stack
-{
-	int len;
-
-}
 
 
 /*
@@ -59,5 +53,7 @@ char			**ft_split(char const *s, char c);
 t_list* new_node(int data);
 int    print_stack(int stack, char *str);
 int    print_info(char *str);
+int iterate(t_list *head);
+void delete_ele(t_list **head_ref, int key);
 
 #endif

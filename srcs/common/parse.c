@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 20:43:20 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/05/26 14:04:59 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/05/29 10:43:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "/Users/mvaldeta/Documents/42Cursus/02.push_swap/pslib/includes/pslib.h"
+#include "pslib.h"
 
 int		main(int ac, char **av)
 {
@@ -22,7 +22,8 @@ int		main(int ac, char **av)
 	t_list *head;
 	t_list *node;
 	t_list *stack_a;
-
+	
+	printf("\E[H\E[2J");
 	while(av[a])
 	{
 		node = new_node(0);
@@ -31,12 +32,24 @@ int		main(int ac, char **av)
 			head = node;
 			stack_a = head;
 		}
-		else {
+		else 
+		{
 			stack_a->next = new_node(ft_atoi(av[a++]));
 			stack_a->next->prev = stack_a;
-			stack_a = stack_a->next; 
-			printf("%d\n", stack_a->value);
-		}
+			stack_a = stack_a->next;
+			//print_stack(stack_a->value, "stack a");
 	}
+	}
+	print_info("stack_a");
+	iterate(head);
+	delete_ele(&head, 88);
+	iterate(head);
+	stack_a = head;
+	while(stack_a != NULL)
+	{
+		print_stack(stack_a->value, "stack a");
+		stack_a = stack_a->next;
+	}
+	print_info("stack_a");
 	return(0);
 }
