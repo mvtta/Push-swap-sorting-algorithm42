@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   borala.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 12:59:31 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/01 14:57:09 by user             ###   ########.fr       */
+/*   Updated: 2021/06/01 15:30:32 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,13 @@ void	stack_pop(t_list  **head, t_list *node)
 /* insert @ front */
 t_list	*stack_push(t_list 	*tmpelem, t_list *node, t_stack *stack)
 {
-	t_stack *tmpstack;
+	t_stack *tmpstack = NULL;
 	
-	tmpstack = stack;
 /* 	if(stack->head == NULL)
 	{
 		stack->head = node;
 		return(node);
 	} */
-		stack->size++;
-		tmpelem->value = node->value;
-		tmpstack->head= stack->head;
-		stack->head = tmpelem->prev;
 	return(tmpelem);
 }
 
@@ -80,7 +75,7 @@ int	main(void)
 {
 	t_list *stack_a = NULL;
 	t_list *stack_b = NULL;
-	t_stack *a = NULL;
+	t_stack *a = malloc(sizeof(t_stack));
 	
 	int nb = 9;
 	stack_a = stack_new_ele(nb);
@@ -92,15 +87,16 @@ int	main(void)
 
 	t_list *head;
 	head = stack_a;
+	a->head = head;
 	nb +=1;
 	while(nb < 20)
 	{
-		printf("%d\n", stack_a->value);
+		//printf("%d\n", stack_a->value);
 		if (nb < 19)
 		{
 			//stack_pop(&stack_a, stack_new_ele(nb));
 			stack_push(stack_a, stack_new_ele(nb), a);
-			stack_a = stack_a->prev;			
+			//stack_a = stack_a->prev;			
 		}
 		nb++;
 	}

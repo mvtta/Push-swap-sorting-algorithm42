@@ -6,7 +6,7 @@
 /*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/05/31 12:48:43 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/01 16:25:52 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,24 @@
 ** Part 0 -	Stack node
 */
 
-typedef struct	s_list
+typedef struct			s_stack_link
 {
-	int				value;
-	struct s_list 	*prev;
-	struct s_list	*next;
-}				t_list;
+	struct s_stack_link *prev;
+	int					value;
+	struct s_stack_link	*next;
+}						t_stack_link;
+
+/*
+** Part 0.1 - Stack info
+*/
+typedef struct			s_stack_info
+{
+	struct s_stack_link	*head;
+	struct s_stack_link	*tail;
+	int					size;
+	int					most_likely;	
+}						t_stack_info;
+
 
 /*
 ** Part 1 -	Libc functions
@@ -53,13 +65,7 @@ char			**ft_split(char const *s, char c);
 ** 	Part 3 - Stack functions
 */
 
-t_list	*stack_new_node(int data);
-void    stack_push(t_list **head, t_list *node, t_list *stack_a, int data);
-int		stack_size(t_list *head);
-void	stack_del(t_list **head_ref, int key);
-void	stack_pop_key(t_list **head_ref, int key);
-void	stack_pop(t_list **head_ref, int key);
-void	stack_peek(t_list **head_ref, int key);
+
 
 /*
 ** 	Part 4 - Printing functions
