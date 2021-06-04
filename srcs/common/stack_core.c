@@ -6,7 +6,7 @@
 /*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/04 17:41:11 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/04 19:29:34 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,16 @@ void			stack_pop_front(t_stack_info *stack, t_stack_link *out)
 void			stack_pop_back(t_stack_info *stack, t_stack_link *out)
 {
 	t_stack_link **p;
+	t_stack_link *to_del;
+	t_stack_link *newtail;
 
-	*p = out->prev;
-	stack->tail = (*p);
+	printf("node received : %d\n", out->value);
+	to_del = stack->tail;
+	stack->tail = stack->tail->prev;
+	newtail = stack->tail->prev;
+	printf("last : %d", to_del->value);
+	printf("new last : %d", newtail->value);
+	//free(to_del);
 /* 	free(out->prev);
 	free(out->next);
 	free(&out->value); */
@@ -94,7 +101,7 @@ t_stack_link			*stack_append(t_stack_info *stack, t_stack_link *new, int i)
 {
 	t_stack_link *to_insert;
 	to_insert = new_link(i, stack);
-	to_insert->prev = stack->head;
+	to_insert->prev = stack->tail;
 	stack->tail = to_insert;
 
 	return(to_insert);
@@ -123,8 +130,11 @@ int		main(void)
 		printf("node :%p\n\n", element);
 		element = element->next;
 	}
+	stack_pop_back(stack, element);
 	printf("head:%d\n", stack->head->value);
-	printf("peek:%d\n", stack_top_peek(stack));
+	printf("peek head:%d\n", stack_top_peek(stack));
+	printf("tail:%d\n", stack->tail->value);
+	printf("peek tail:%d\n", stack_tail_peek(stack));
 /* 	element = stack->head;
 	stack_pop_back(stack, element+=1);
 	while(element->next != NULL)
