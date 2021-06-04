@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/02 12:51:03 by user             ###   ########.fr       */
+/*   Updated: 2021/06/04 17:41:11 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack_link 	*new_link(int data, t_stack_info *stack)
 	new = malloc(sizeof(t_stack_link));
 
 	new->value = data;
-	new->prev = NULL;
+	new->prev = new->next;
 	new->next = NULL;
 	stack->size++;
 
@@ -49,13 +49,6 @@ static inline t_stack_link  **find_link(t_stack_info *stack, t_stack_link *targe
 	return p;
 }
 
-void			stack_push(t_stack_info *stack, t_stack_link *current, t_stack_link *new)
-{
-	stack->head = new->prev;
-	new->next = current->prev;
-	stack->size++;
-}
-
 void			stack_pop_front(t_stack_info *stack, t_stack_link *out)
 {
 	t_stack_link **p;
@@ -73,7 +66,9 @@ void			stack_pop_back(t_stack_info *stack, t_stack_link *out)
 
 	*p = out->prev;
 	stack->tail = (*p);
-	free(&out);
+/* 	free(out->prev);
+	free(out->next);
+	free(&out->value); */
 	stack->size--;
 }
 
@@ -85,14 +80,24 @@ void			stack_key_pop_push(t_stack_info *stack, t_stack_link *target)
 	stack->size--;
 }
 
-int	*stack_top_peek(t_stack_info *stack)
+int	stack_top_peek(t_stack_info *stack)
 {
-		return(&stack->head->value);
+		return(stack->head->value);
 
 }
-int	*stack_tail_peek(t_stack_info *stack)
+int	stack_tail_peek(t_stack_info *stack)
 {
-		return(&stack->tail->value);
+		return(stack->tail->value);
+}
+
+t_stack_link			*stack_append(t_stack_info *stack, t_stack_link *new, int i)
+{
+	t_stack_link *to_insert;
+	to_insert = new_link(i, stack);
+	to_insert->prev = stack->head;
+	stack->tail = to_insert;
+
+	return(to_insert);
 }
 
 int		main(void)
@@ -102,17 +107,33 @@ int		main(void)
 	int i = 0;
 
 	stack = new_stack();
-	while(i++ < 10)
+	element =  new_link(i, stack);
+	stack->head = element;
+	//printf("%d\n", element->value);
+	while(i++ <= 10)
 	{
-		element =  new_link(i, stack);
+		element->next = stack_append(stack, element, i);
+		element = element->next;
+	}
+ 	element = stack->head;
+	while(element->next != NULL)
+	{
 		printf("%d\n", element->value);
+		printf("next :%p\n", element->next);
+		printf("node :%p\n\n", element);
+		element = element->next;
 	}
-	while(stack->head != NULL)
+	printf("head:%d\n", stack->head->value);
+	printf("peek:%d\n", stack_top_peek(stack));
+/* 	element = stack->head;
+	stack_pop_back(stack, element+=1);
+	while(element->next != NULL)
 	{
-		printf("%lu\n", stack->head);
-		stack->head->next;
-	}
-	printf("size:%d", stack->size);
+		printf("%d\n", element->value);
+		printf("next :%p\n", element->next);
+		printf("node :%p\n\n", element);
+		element = element->next;
+	} */
 /* 	printf("head:%d", stack->head->value);
 	printf("tail:%d", stack->tail->value); */
 
