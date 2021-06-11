@@ -6,14 +6,14 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/07 20:24:40 by user             ###   ########.fr       */
+/*   Updated: 2021/06/11 11:02:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "pslib.h"
+#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
 
 t_stack_link *new_link(int data, t_stack_info *stack)
 {
@@ -104,7 +104,7 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
-int main(void)
+/* int main(void)
 {
 	t_stack_info *stack = NULL;
 	t_stack_link *element = NULL;
@@ -113,20 +113,20 @@ int main(void)
 	stack = new_stack();
 	element = new_link(i, stack);
 	stack->head = element;
-	//printf("%d\n", element->value);
+	printf("%d\n", element->value);
 	while (i++ <= 10)
 	{
 		element->next = stack_append(stack, element, i);
 		element = element->next;
 	}
 	element = stack->head;
-	/* 	while(element->next != NULL)
+	while(element->next != NULL)
 	{
 		printf("%d\n", element->value);
 		printf("next :%p\n", element->next);
 		printf("node :%p\n\n", element);
 		element = element->next;
-	} */
+	}
 	while (element != stack->tail)
 	{
 		printf("%d\n", element->value);
@@ -153,4 +153,4 @@ int main(void)
 		printf("node :%p\n\n", element);
 		element = element->next;
 	}
-}
+} */
