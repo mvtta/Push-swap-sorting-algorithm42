@@ -1,103 +1,227 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/23 18:08:33 by mvaldeta          #+#    #+#              #
-#    Updated: 2021/06/11 09:58:48 by user             ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+################################################################################
+# Makefile
+################################################################################
 
-#MYRULES
-COMMON		= common
-CHECKER		= checker
-PUSH		= push_swap
-LIBFT_A		= libft.a
+# Makefile by mvaldeta (tired of !understanting makefiles)
+# Version 0.0 made with minor changes from @fletcher97 Version: 1.2.1
 
-#compilation
-COMP		= gcc -Wall -Werror -Wextra -I includes -I libft/inlcudes -I libft/libft -c -o
+# The goal is to itearte this Makefile with the help from my friends @fletcher97 
+# & @DimitriDaSilva into my own version.
 
-#object_directory
-OBJ_DIR		= obj/
-COM_SRC_DIR = srcs/common/
-CHE_SRC_DIR	= srcs/checker/
-PU_SRC_DIR 	= srcs/push_swap/
-LIBFT = libft/
+# changed ${AT}rm -r ${OBJ_ROOT} on clean targets to delete tmp folders
 
-#COMMON SRCS
-COM_SRC		= $(wildcard ./srcs/common/*.c)
+# helps to read the manual -> https://www.gnu.org/software/make/manual
 
-#CHECKER SRCS
-CHE_SRC		= $(wildcard ./srcs/checker/*.c)
+################################################################################
+# Variables
+################################################################################
 
-#PUSH_SWAP SRCS
-PU_SRC		= $(wildcard ./srcs/push_swap/*.c)
+NAME1			= push_swap
+NAME2			= checker
+NAMES			= ${NAME1} ${NAME2}
+#AR				= ar rcs
 
-#OBJS
-COM_OBJ		= $(COM_SRC:%.c=%.o)
-CHE_OBJ		= $(CHE_SRC:%.c=%.o)
-PU_OBJ		= $(PU_SRC:%.c=%.o)
-OBJ			=$(COM_OBJ) $(CHE_OBJ) $(PU_OBJ)
+################################################################################
+# Configs
+################################################################################
 
-#SRCS_PATH
-COM_SRC_PATH	= $(COM_SRC:%=$(COM_SRC_DIR)%)
-CHE_SRC_PATH	= $(CHE_SRC:%=$(CHE_SRC_DIR)%)
-PU_SRC_PATH		= $(PU_SRC:%=$(PU_SRC_DIR)%)
-OBJ_PATH		= $(COM_OBJ_PATH) $(CHE_OBJ_PATH) $(PU_OBJ_PATH)
+# Verbose levels
+# 0: Make will be totaly silenced
+# 1: Make will print echos and printf
+# 2: Make will not be silenced but target commands will not be printed
+# 3: Make will print each command
+# 4: Make will print all debug info
+#
+# If no value is specified or an incorrect value is given make will print each
+# command like if VERBOSE was set to 3.
+VERBOSE = 1
 
-all:			color do_libft $(OBJ_DIR) $(NAME)
-				@echo "\\n\033[32;1m PUSH_SWAP + CHECKER DONE \033[0m \\n"
+################################################################################
+# Compiler & Flags
+# ":=" / "=" explanation bellow.
+# @43 calls multiple vars turned into a "one-time" expandible var.
+#
+# https://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
+#
+################################################################################
 
-$(OBJ_DIR):
-				@mkdir -p $(OBJ_DIR)
-				@echo Create: Object directory
+CC = gcc
 
-$(NAME):		$(OBJ_PATH)
-				@gcc $(COM_OBJ_PATH) $(PU_OBJ_PATH) *.a -o push_swap \
-					-I includes -I libft/includes
-				@gcc $(COM_OBJ_PATH) $(CHE_OBJ_PATH) *.a -o checker \
-					-I includes -I libft/includes
+CFLAGS = -Wall -Wextra -Werror -Wvla
+DFLAGS = -g
+SANITIZE = -fsanitize=address
 
-$(COM_OBJ_PATH):$(COM_SRC_PATH)
-						@$(MAKE) $(COM_OBJ)
-						
-$(P_OBJ_PATH):	$(PU_SRC_PATH)
-					@$(MAKE) $(PU_OBJ)
-					
-$(COM_OBJ_PATH):$(COM_SRC_PATH)
-				@$(MAKE) $(COM_OBJ)
-				
-$(COM_OBJ):		$(LIBFT_A)
-				@echo Create: $(@:obj/%=%)"\x1b[1A\x1b[M"
-				@$(COMP) $(OBJ_DIR)$@ $(COM_SRC_DIR)$(@:%.o=%.c)
+################################################################################
+# Folders & Files
+#
+################################################################################
 
-$(CHE_OBJ):		$(LIBFT_A)
-				@echo Create: $(@:obj/%=%)"\x1b[1A\x1b[M"
-				@$(COMP) $(OBJ_DIR)$@ $(COM_SRC_DIR)$(@:%.o=%.c)
+BIN_ROOT 		= bin/
+DEP_ROOT 		= dep/
+INC_ROOT		= includes/
+SRC_ROOT		= srcs/
+OBJ_ROOT		= obj/
 
-$(P_OBJ):		$(LIBFT_A)
-				@echo Create: $(@:obj/%=%)"\x1b[1A\x1b[M"
-				@$(COMP) $(OBJ_DIR)$@ $(PU_SRC_DIR)$(@:%.o=%.c)
+DIRS			= check/ conversions/ list/ memory/ parse/ print/ printf/ stack/ string/
 
-do_lib:
-				@make -C $(LIBFT)
-				@cp $(LIBFT)/$(LIBFT_A) .
+SRC_DIRS		:= $(addprefix ${SRC_ROOT}, ${DIRS})
+OBJ_DIRS		:= $(addprefix ${OBJ_ROOT}, ${DIRS})
+DEP_DIRS 		:= $(addprefix ${DEP_ROOT}, ${DIRS})
+INC_DIRS		:= ${INC_ROOT}
 
-colour:
-				@echo "\x1b[36m""\x1b[1A\x1b[M"
+SRCS			:= $(foreach dir, ${SRC_DIRS}, $(wildcard ${dir}*.c))
+SRCS			+= $(wildcard ${SRC_ROOT}*.c)
+OBJS			:= $(subst ${SRC_ROOT}, ${OBJ_ROOT}, ${SRCS:.c=.o})
+DEPS 			:= $(subst ${SRC_ROOT}, ${DEP_ROOT}, ${SRCS:.c=.d})
 
-clean:			color
-				@/bin/rm -rf $(OBJ_DIR) $(LIBFT_A)
-				@make -C $(LIBFT) clean
-				@echo "\\n\033[32;1m Cleaned library object files \033[0m
+INCS			:= ${addprefix -I, ${INC_DIRS}}
+BINS			:= ${addprefix ${BIN_ROOT}, ${NAMES}}
 
-fclean:			clean
-				@/bin/rm -f $(PUSH_SWAP) $(CHECKER) $(LIBFT_A)
-				@make -C $(LIBFT) fclean
-				@echo "\\n\033[32;1m Cleaned $(NAME) \033[0m \\n"
+################################################################################
+# VPATHS
+# vpath is a list of directories to be searched for missing source files
+# -> https://www.cmcrossroads.com/article/basics-vpath-and-vpath
+################################################################################
 
-re: 			fclean all
+vpath %.o $(OBJ_ROOT)
+vpath %.h $(INC_ROOT)
+vpath %.c $(SRC_DIRS)
+vpath %.d $(DEP_DIRS)
 
-.PHONY:			all clean flcean re color
+################################################################################
+# Conditions
+################################################################################
+
+ifeq ($(shell uname), Linux)
+	SED := sed -i.tmp --expression
+	SED_END = && rm -f $@.tmp
+else ifeq ($(shell uname), Darwin)
+	SED = sed -i.tmp
+	SED_END = && rm -f $@.tmp
+endif
+
+ifeq ($(VERBOSE),0)
+	MAKEFLAGS += --silent
+	BLOCK = >/dev/null
+else ifeq ($(VERBOSE),1)
+	MAKEFLAGS += --silent
+else ifeq ($(VERBOSE),2)
+	AT = @
+else ifeq ($(VERBOSE),4)
+	MAKEFLAGS += --debug=v
+endif
+
+################################################################################
+# Colors & Template code
+################################################################################
+
+_YELLOW				:=		\e[38;5;184m
+_GREEN				:=		\e[38;5;46m
+_RESET				:=		\e[0m
+_INFO				:=		[$(_YELLOW)INFO$(_RESET)]
+_DONE				:=		[$(_GREEN)DONE$(_RESET)]
+
+################################################################################
+# Target
+################################################################################
+
+all: ${BINS}
+
+${NAME1}: ${OBJS}
+	@ printf "$(_DONE) Compilation OK!\n"
+	${AT}mkdir -p ${BIN_ROOT}
+	${AT}cd ${BIN_ROOT}; ${AR} ${@F} $(addprefix ../, ${OBJS})
+
+
+################################################################################
+# Setup Target
+################################################################################
+
+.init:
+	${AT}printf "\033[33m[CREATING FOLDER STRUCTURE]\033[0m\n" ${BLOCK}
+	${AT}mkdir -p ${BIN_ROOT}
+	${AT}mkdir -p ${DEP_ROOT}
+	${AT}mkdir -p ${INC_ROOT}
+	${AT}mkdir -p ${OBJ_ROOT}
+	${AT}mkdir -p ${SRC_ROOT}
+	${AT}mkdir -p ${TESTS_ROOT}
+	${AT}echo *.o\n*.d\n.vscode\na.out\n.init > .gitignore
+	${AT}date > $@
+
+################################################################################
+# General Targets
+################################################################################
+
+clean:
+	@ printf "$(_INFO) Deleted objects: OK!\n"
+	${AT}mkdir -p ${OBJ_ROOT}
+	${AT}find ${OBJ_ROOT} -type f -delete 2>/dev/null
+	${AT}rm -r ${OBJ_ROOT}
+
+fclean: clean
+	@ printf "$(_INFO) Deleted binaries: OK!\n"
+	${AT}mkdir -p ${BIN_ROOT}
+	${AT}find ${BIN_ROOT} -type f -delete
+	${AT}rm -r ${BIN_ROOT}
+
+clean_dep:
+	@ printf "$(_INFO) Deleted dependencies: OK!\n"
+	${AT}mkdir -p ${DEP_ROOT}
+	${AT}find ${DEP_ROOT} -type f -delete 2>/dev/null
+	${AT}rm -r ${DEP_ROOT}
+
+clean_all: clean_dep fclean
+
+re: fclean all
+
+################################################################################
+# .PHONY
+################################################################################
+
+.PHONY : clean fclean clean_dep clean_all re all 
+
+################################################################################
+# Function
+################################################################################
+
+define make_bin
+${1} : ${2}
+endef
+
+define make_obj
+${1} : ${2} ${3}
+	$${AT}printf "\033[38;5;14m[OBJ]: \033[38;5;47m$$@\033[0m\n" ${BLOCK}
+	$${AT}mkdir -p $${@D}
+	$${AT}$${CC} $${CFLAGS} $${INCS} -c $$< -o $$@
+endef
+
+define make_dep
+${1} : ${2}
+	$${AT}printf "\033[38;5;13m[DEP]: \033[38;5;47m$$@\033[0m\n" ${BLOCK}
+	$${AT}mkdir -p $${@D}
+	$${AT}rm -f $$@.tmp
+	$${AT}$${CC} -MM $$< -I $${INC_ROOT} -MF $$@
+	$${AT}sed -i.tmp --expression 's|:| $$@ :|' $$@ && rm -f $$@.tmp
+	$${AT}sed -i.tmp --expression '1 s|^|$${@D}/|' $$@ && rm -f $$@.tmp
+endef
+
+################################################################################
+# Function Generator
+################################################################################
+
+$(foreach bin, $(BINS), $(eval \
+$(call make_bin, $(bin), $(notdir $(bin)))))
+
+$(foreach src, $(SRCS), $(eval \
+$(call make_dep, $(subst ${SRC_ROOT}, ${DEP_ROOT}, $(src:.c=.d)), $(src))))
+
+$(foreach src, $(SRCS), $(eval \
+$(call make_obj, $(subst ${SRC_ROOT}, ${OBJ_ROOT}, $(src:.c=.o)), \
+$(src), \
+$(subst ${SRC_ROOT}, ${DEP_ROOT}, $(src:.c=.d)))))
+
+################################################################################
+# Includes
+################################################################################
+-include ${DEPS}
+

@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/11 09:44:07 by user             ###   ########.fr       */
+/*   Updated: 2021/06/12 10:27:37 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
+# include </Users/mvaldeta/02.push_swap/libft/includes/libft.h>
+
+/*
+** Macro-frame
+*/
 
 # define QUARTER frame->quarter
 # define MEDIAN frame->median
@@ -29,6 +34,29 @@
 # define SMALL_ROTATE frame->small_rotate
 # define SMALL_RROTATE frame->small_rrotate
 # define SMALL_FLAG frame->small_flag
+
+/*
+** handy-enumerations
+*/
+
+# define INSTRUCTIONS "sa sb ss pa pb ra rb rr rra rrb rrr"
+
+typedef enum e_ins
+{
+	sa,
+	sb,
+	ss,
+	pa,
+	pb,
+	ra,
+	rb,
+	rr,
+	rra,
+	rrb,
+	rrr,
+	END_INS
+} t_ins;
+
 
 /*
 ** Part 0 -	Stack node
@@ -49,8 +77,7 @@ typedef struct			s_stack_info
 {
 	struct s_stack_link	*head;
 	struct s_stack_link	*tail;
-	int					size;
-	//int					most_likely;	
+	int					size;	
 }						t_stack_info;
 
 /*
@@ -92,6 +119,7 @@ typedef struct 			s_frame
 */
 
 typedef void			(*t_table)(t_frame	*frame);
+
 
 /*
 ** Checker functions

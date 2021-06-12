@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/11 11:02:25 by user             ###   ########.fr       */
+/*   Updated: 2021/06/11 20:02:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ t_stack_link *stack_append(t_stack_info *stack, t_stack_link *new, int i)
 	stack->tail = to_insert;
 
 	return (to_insert);
-}
+}§
 
 int find_value(t_stack_link *value, int the_one)
 {
@@ -104,12 +104,12 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
+
 /* int main(void)
 {
 	t_stack_info *stack = NULL;
 	t_stack_link *element = NULL;
 	int i = 0;
-
 	stack = new_stack();
 	element = new_link(i, stack);
 	stack->head = element;
