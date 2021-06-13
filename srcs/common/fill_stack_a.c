@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/06/12 12:41:38 by user             ###   ########.fr       */
+/*   Updated: 2021/06/13 23:26:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,25 @@ void			push_swap_error(t_frame *frame)
 	exit(-1);
 }
 
-int     duplicates(int  bucket[], size_t bucket_size)
+/* int     duplicates(int  bucket[])
 {
     
-}
+} */
 
-int             error_check(int to_check, char **argv)
+int             error_check(int to_check)
 {
     long int test = 2147483647;
+    int map[256] = {0};
+    unsigned char c;
+
+    c = (unsigned char)to_check;
     if(ft_is_digit(to_check) == 0 && 
-        to_check > -(test + 1) && to_check < to_check)
-        return(0);
+        to_check >(-test + 1) && to_check < test)
+        {
+            map[c] += 1;
+            if(map[c] < 2)
+                return(0);
+        }
     return(1);
 }
 

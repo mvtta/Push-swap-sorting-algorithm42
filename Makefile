@@ -59,15 +59,22 @@ SANITIZE = -fsanitize=address
 BIN_ROOT 		= bin/
 DEP_ROOT 		= dep/
 INC_ROOT		= includes/
+LIB_ROOT		= lib/
 SRC_ROOT		= srcs/
 OBJ_ROOT		= obj/
 
-DIRS			= check/ conversions/ list/ memory/ parse/ print/ printf/ stack/ string/
+# Libft
+LIBFT_ROOT := ${LIB_ROOT}libft/
+LIBFT_INC := ${LIBFT_ROOT}inc/
+LIBFT := ${LIBFT_ROOT}bin/libft.a
+LIBS := -L${LIBFT_ROOT}bin -lft
+
+DIRS			= checker/ common/ push_swap/
 
 SRC_DIRS		:= $(addprefix ${SRC_ROOT}, ${DIRS})
 OBJ_DIRS		:= $(addprefix ${OBJ_ROOT}, ${DIRS})
 DEP_DIRS 		:= $(addprefix ${DEP_ROOT}, ${DIRS})
-INC_DIRS		:= ${INC_ROOT}
+INC_DIRS		:= ${INC_ROOT} ${LIBFT_INC}
 
 SRCS			:= $(foreach dir, ${SRC_DIRS}, $(wildcard ${dir}*.c))
 SRCS			+= $(wildcard ${SRC_ROOT}*.c)
