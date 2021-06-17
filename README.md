@@ -14,9 +14,8 @@ by: mvaldeta
 <h2>
 </h2>
 
-<img align="center">
-![IMG_COVER](https://64.media.tumblr.com/bcf49029014e8bbecf72e9c4a4ab6337/tumblr_nyaxxsIIaQ1qblxj7o3_400.gifv?align=center)
-</img>
+|:---------:|:-----------------:|
+| |![IMG_COVER](https://64.media.tumblr.com/bcf49029014e8bbecf72e9c4a4ab6337/tumblr_nyaxxsIIaQ1qblxj7o3_400.gifv) | |
 
 ###### Rules  
 ```
