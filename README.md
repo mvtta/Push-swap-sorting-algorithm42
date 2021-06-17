@@ -16,7 +16,7 @@ by: mvaldeta
 
 |  |  |  |
 |:---------:|:---------:|:---------:|
-|     |![IMG_COVER](https://64.media.tumblr.com/bcf49029014e8bbecf72e9c4a4ab6337/tumblr_nyaxxsIIaQ1qblxj7o3_400.gifv)|     |
+|![STACK3](https://64.media.tumblr.com/ac866c7d72f6f3a3958ae1a238038d88/tumblr_nyaxxsIIaQ1qblxj7o7_400.gifv)|![STACK3](https://64.media.tumblr.com/bcf49029014e8bbecf72e9c4a4ab6337/tumblr_nyaxxsIIaQ1qblxj7o3_400.gifv)|![STACK3](https://64.media.tumblr.com/84fbd5ff5b0a41347f7ad9de95dd534e/tumblr_nyaxxsIIaQ1qblxj7o10_400.gifv)|
 
 ###### Rules  
 ```
