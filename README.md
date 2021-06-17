@@ -23,17 +23,17 @@ by: mvaldeta
 Create a ~Fast~ sorting algorithm with two stacks: A + B  
 To do so, you only have the following operations at your disposal:  
 ```
-- SA : swaps the TOP 2 elements of A 🔄    
-- SB : swaps the TOP 2 elements of B 🔄    
-- SS : SA and SB at the same time  A🔄 B🔄 TOPS
-- PA : TOP B -> TOP A (does nothing if b is empty) ⬅️
-- PB : TOP A -> TOB B (does nothing if a is empty) ➡️
-- RA : rotates A ⤵️
-- RB : rotates B ⤵️ 
-- RR : rotates A ⤵️ + rotates B ⤵️ at the same time.
+- SA  : swaps the TOP 2 elements of A 🔄    
+- SB  : swaps the TOP 2 elements of B 🔄    
+- SS  : SA and SB at the same time  A🔄 B🔄 TOPS
+- PA  : TOP A -> TOP B ➡️ 
+- PB  : TOP B -> TOB A ⬅️
+- RA  : rotates A ⤵️
+- RB  : rotates B ⤵️ 
+- RR  : rotates A ⤵️ + rotates B ⤵️ at the same time.
 - RRA : rotates A ⤴️ 
 - RRA : rotates B ⤴️  
-- RRR : otates A ⤴️ + rotates B ⤴️ at the same time.  
+- RRR : rotates A ⤴️ + rotates B ⤴️ at the same time.  
 
 ###### Approach  
 ```
@@ -44,103 +44,45 @@ According to the n-elements on each stack:
 repeat step 1 & 2 until stack b is left with n <= 2
 3) Check pseudo sort for A
 4) Pass unsorted to B
+
+Generic conditions fort state "sorted"
+n1 + n2 <= n3
+
+if this happens Push into the other stack
+
+Generic conditions for intructions to happen
+SA  -> first A > second A
+SB  -> first B > second B
+SS  -> SA && SB == true
+PA  -> first A > first B
+PB  -> first B < first A 
+RA  -> first A > last B
+RB  -> first B > last A
+RR  -> RA && RB  == true
+RRA -> last A < first B
+RRB -> last B < first A
+RRR -> RRA && RRB == true || NONE of the conditions are true to restart the cycle
 ```
 
 ###### Illustration 
 
 | stack A | stack B |
 |:---------:|:-----------------:|
-| 8 | 9 |
-| 2 | 3 |
-| 4 | 1 |
-| 0 | 5 |
-| 6 | 7 |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 8 | 3 |
-| 2 | 1 |
-| 4 | 5 |
-| 0 | 7 |
-| 6 |
-| 9 |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 3 | 8 |
-| 1 | 2 |
-| 5 | 4 |
-| 7 | 0 |
-| 9 | 6 |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 3 | 2 |
-| 1 | 0 |
-| 5 |   |
-| 7 |   |
-| 9 |   |
-| 8 |   |
-| 4 |   |
-| 6 |   |
-
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 0 |   |
-| 2 |   |
-| 3 |   |
-| 1 |   |
-| 5 |   |
-| 7 |   |
-| 9 |   |
-| 8 |   |
-| 4 |   |
-| 6 |   |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 0 | 1 |
-| 2 | 9 |
-| 3 |   |
-| 5 |   |
-| 7 |   |
-| 8 |   |
-| 4 |   |
-| 6 |   |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 1 | 4 |
-| 0 | 6 |
-| 2 |   |
-| 3 |   |
-| 5 |   |
-| 7 |   |
-| 8 |   |
-| 1 |   |
-| 9 |   |
-
-| stack A | stack B |
-|:---------:|:-----------------:|
-| 1 |   |
-| 0 |   |
-| 2 |   |
-| 3 |   |
-| 5 |   |
-| 4 |   |
-| 6 |   |
-| 7 |   |
-| 8 |   |
-| 1 |   |
-| 9 |   |
-
-
+| 83 |    |
+| 31 |    |
+| 19 |    |
+| 52 |    |
+| 82 |    |
+| 96 |    |
+| 66 |    |
+| 23 |    |
+| 34 |    |
+| 4  |    | 
+###### start
 
 ###### Line of thought
 ```
-find largest on stack b, see how many positions is away from both-ends
-if less than 2 positions swap and rotate push
+loading
 ```
 
 ###### Research  
