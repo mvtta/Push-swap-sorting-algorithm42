@@ -4,15 +4,19 @@ Push Swap
 </h2>
 <h6 align="center">
 sort data on a stack, with a limited set of instructions,  
-using the lowest possible number of actions 📚
+using the lowest possible number of actions 📚. 
+<br>
 status: ongoing
+<br>
 by: mvaldeta
 </h6>
 
 <h2>
 </h2>
 
+<img align="center">
 ![IMG_COVER](https://64.media.tumblr.com/bcf49029014e8bbecf72e9c4a4ab6337/tumblr_nyaxxsIIaQ1qblxj7o3_400.gifv?align=center)
+</img>
 
 ###### Rules  
 ```
