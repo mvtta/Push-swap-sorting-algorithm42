@@ -13,7 +13,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
+#include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 
 t_stack_link *new_link(int data, t_stack_info *stack)
 {
@@ -30,8 +31,8 @@ t_stack_link *new_link(int data, t_stack_info *stack)
 
 t_stack_info *new_stack(void)
 {
+	printf("%s", "esta,psnonewstack\n");
 	t_stack_info *new;
-
 	new = malloc(sizeof(t_stack_info));
 	new->head = NULL;
 	new->tail = NULL;
@@ -104,15 +105,16 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
-void	print_the_stack(t_stack_info *element, char id)
+void	print_the_stack(t_stack_info *stack, t_stack_link *element, char id)
 {
-	element = element->head;
-	while(element->head->next != NULL)
+
+	element = stack->head;
+	while(element->next != NULL)
 	{
-		printf("%d\n", element->head->value);
-		printf("next :%p\n", element->head->next);
+		printf("%d\n", element->value);
+		printf("next :%p\n", element->next);
 		printf("node :%p\n\n", element);
-		element = element->head->next;
+		element = element->next;
 	}
 }
 

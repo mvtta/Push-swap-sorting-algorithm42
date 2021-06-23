@@ -46,7 +46,7 @@ VERBOSE = 1
 CC = gcc
 
 #CFLAGS = -Wall -Wextra -Werror -Wvla
-#DFLAGS = -g
+DFLAGS = -g
 #SANITIZE = -fsanitize=address
 
 ################################################################################

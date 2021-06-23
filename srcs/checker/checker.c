@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
+#include "../../includes/pslib.h"
 
 int     main(int argc, char **argv)
 {

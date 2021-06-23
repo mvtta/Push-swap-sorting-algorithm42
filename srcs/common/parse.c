@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
+#include "../../includes/pslib.h"
 
 /* int		main(int ac, char **av)
 {

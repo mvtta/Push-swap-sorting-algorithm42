@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
+#include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 
 t_frame         *init_frame(t_frame *frame, char **argv)
 {
-    frame = (t_frame*)malloc(sizeof(t_frame));
+/*     frame = (t_frame*)malloc(sizeof(t_frame));
     if (!frame)
         exit(1);
     frame->a = NULL;
@@ -38,5 +39,5 @@ t_frame         *init_frame(t_frame *frame, char **argv)
     SMALL_RROTATE = 0;
     SMALL_FLAG = 0;
     frame->after_rotate = 0;
-    return(frame);
+    return(frame); */
 }

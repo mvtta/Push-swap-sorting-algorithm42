@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/mvaldeta/02.push_swap/includes/pslib.h"
+#include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 
 void			push_swap_error(t_frame *frame)
 {
@@ -24,9 +25,11 @@ int             error_check(int to_check)
     int map[256] = {0};
     unsigned char c;
 
+    printf("arrived in function: %d\n", to_check);
     c = (unsigned char)to_check;
-    if(ft_isdigit(to_check) == 0 && 
-        to_check >(-test + 1) && to_check < test)
+    if(ft_isalpha(to_check))
+        return(printf("error: not a number\n"));
+    if(to_check >(-test + 1) && to_check < test)
         {
             map[c] += 1;
             if(map[c] < 2)

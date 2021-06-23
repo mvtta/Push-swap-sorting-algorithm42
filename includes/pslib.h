@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
-# include </Users/mvaldeta/02.push_swap/libft/includes/libft.h>
+#include "../../libft/includes/libft.h"
 
 /*
 ** Macro-frame
@@ -149,13 +149,22 @@ char			**ft_split(char const *s, char c);
 ** 	Part 3 - Stack functions
 */
 
+t_stack_info *new_stack(void);
+t_stack_link *new_link(int data, t_stack_info *stack);
+void stack_pop_front(t_stack_info *stack);
+void stack_pop_back(t_stack_info *stack);
+void stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
+int stack_top_peek(t_stack_info *stack);
+int stack_tail_peek(t_stack_info *stack);
+t_stack_link *stack_append(t_stack_info *stack, t_stack_link *new, int i);
+int find_value(t_stack_link *value, int the_one);
+void	print_the_stack(t_stack_info *stack, t_stack_link *element, char id);
 
 
 /*
 ** 	Part 4 - Printing functions
 */
 
-void	print_the_stack(t_stack_info *element, char id);
 int		print_stack(int stack, char *str);
 int		print_info(char *str);
 
