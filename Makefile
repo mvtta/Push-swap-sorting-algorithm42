@@ -40,32 +40,29 @@ VERBOSE = 1
 # Compiler & Flags
 # ":=" / "=" explanation bellow.
 # @43 calls multiple vars turned into a "one-time" expandible var.
-#
 # https://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
-#
 ################################################################################
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Wvla
-DFLAGS = -g
-SANITIZE = -fsanitize=address
+#CFLAGS = -Wall -Wextra -Werror -Wvla
+#DFLAGS = -g
+#SANITIZE = -fsanitize=address
 
 ################################################################################
 # Folders & Files
-#
 ################################################################################
 
 BIN_ROOT 		= bin/
 DEP_ROOT 		= dep/
 INC_ROOT		= includes/
-LIB_ROOT		= lib/
+LIB_ROOT		= libft/
 SRC_ROOT		= srcs/
 OBJ_ROOT		= obj/
 
 # Libft
-LIBFT_ROOT := ${LIB_ROOT}libft/
-LIBFT_INC := ${LIBFT_ROOT}inc/
+LIBFT_ROOT := ${LIB_ROOT}
+LIBFT_INC := ${LIBFT_ROOT}includes/
 LIBFT := ${LIBFT_ROOT}bin/libft.a
 LIBS := -L${LIBFT_ROOT}bin -lft
 
@@ -76,9 +73,14 @@ OBJ_DIRS		:= $(addprefix ${OBJ_ROOT}, ${DIRS})
 DEP_DIRS 		:= $(addprefix ${DEP_ROOT}, ${DIRS})
 INC_DIRS		:= ${INC_ROOT} ${LIBFT_INC}
 
-SRCS			:= $(foreach dir, ${SRC_DIRS}, $(wildcard ${dir}*.c))
-SRCS			+= $(wildcard ${SRC_ROOT}*.c)
-OBJS			:= $(subst ${SRC_ROOT}, ${OBJ_ROOT}, ${SRCS:.c=.o})
+SRCS_MAIN 		:= $(foreach dir, $(filter-out ${SRC_ROOT}checker/%, ${SRC_DIRS}), \
+	$(wildcard ${dir}*.c))
+SRCS_CHECKER 	:= $(foreach dir, $(filter-out ${SRC_ROOT}push_swap/%, \
+	${SRC_DIRS}), $(wildcard ${dir}*.c))
+OBJS_MAIN 		:= $(subst ${SRC_ROOT}, ${OBJ_ROOT}, ${SRCS_MAIN:.c=.o})
+OBJS_CHECKER 	:= $(subst ${SRC_ROOT}, ${OBJ_ROOT}, ${SRCS_CHECKER:.c=.o})
+SRCS 			:= $(foreach dir, ${SRC_DIRS}, $(wildcard ${dir}*.c))
+OBJS 			:= $(subst ${SRC_ROOT}, ${OBJ_ROOT}, ${SRCS:.c=.o})
 DEPS 			:= $(subst ${SRC_ROOT}, ${DEP_ROOT}, ${SRCS:.c=.d})
 
 INCS			:= ${addprefix -I, ${INC_DIRS}}
@@ -134,10 +136,18 @@ _DONE				:=		[$(_GREEN)DONE$(_RESET)]
 
 all: ${BINS}
 
-${NAME1}: ${OBJS}
-	@ printf "$(_DONE) Compilation OK!\n"
+${NAME1}: ${LIBFT} ${OBJS_MAIN}
+	${AT}printf "\033[38;5;46m[CREATING ${NAME1}]\033[0m\n" ${BLOCK}
 	${AT}mkdir -p ${BIN_ROOT}
-	${AT}cd ${BIN_ROOT}; ${AR} ${@F} $(addprefix ../, ${OBJS})
+	${AT}${CC} ${CFLAGS} ${INCS} ${OBJS_MAIN} ${LIBS} -o ${BIN_ROOT}$@
+
+${NAME2}: ${LIBFT} ${OBJS_CHECKER}
+	${AT}printf "\033[38;5;46m[CREATING ${NAME2}]\033[0m\n" ${BLOCK}
+	${AT}mkdir -p ${BIN_ROOT}
+	${AT}${CC} ${CFLAGS} ${INCS} ${OBJS_CHECKER} ${LIBS} -o ${BIN_ROOT}$@
+
+${LIBFT}:
+	${AT}make -C ${LIBFT_ROOT} ${BLOCK}
 
 
 ################################################################################
@@ -163,21 +173,25 @@ clean:
 	@ printf "$(_INFO) Deleted objects: OK!\n"
 	${AT}mkdir -p ${OBJ_ROOT}
 	${AT}find ${OBJ_ROOT} -type f -delete 2>/dev/null
+	${AT}make -C ${LIBFT_ROOT} clean${BLOCK}
 	${AT}rm -r ${OBJ_ROOT}
 
 fclean: clean
 	@ printf "$(_INFO) Deleted binaries: OK!\n"
 	${AT}mkdir -p ${BIN_ROOT}
 	${AT}find ${BIN_ROOT} -type f -delete
+	${AT}make -C ${LIBFT_ROOT} fclean${BLOCK}
 	${AT}rm -r ${BIN_ROOT}
 
 clean_dep:
 	@ printf "$(_INFO) Deleted dependencies: OK!\n"
 	${AT}mkdir -p ${DEP_ROOT}
 	${AT}find ${DEP_ROOT} -type f -delete 2>/dev/null
+	${AT}make -C ${LIBFT_ROOT} clean_dep${BLOCK}
 	${AT}rm -r ${DEP_ROOT}
 
 clean_all: clean_dep fclean
+	${AT}make -C ${LIBFT_ROOT} clean_all${BLOCK}
 
 re: fclean all
 
@@ -205,11 +219,10 @@ endef
 define make_dep
 ${1} : ${2}
 	$${AT}printf "\033[38;5;13m[DEP]: \033[38;5;47m$$@\033[0m\n" ${BLOCK}
-	$${AT}mkdir -p $${@D}
-	$${AT}rm -f $$@.tmp
-	$${AT}$${CC} -MM $$< -I $${INC_ROOT} -MF $$@
-	$${AT}sed -i.tmp --expression 's|:| $$@ :|' $$@ && rm -f $$@.tmp
-	$${AT}sed -i.tmp --expression '1 s|^|$${@D}/|' $$@ && rm -f $$@.tmp
+	$${AT}mkdir -p $${@D} $${BLOCK}
+	$${AT}$${CC} -MM $$< $${INCS} -MF $$@ $${BLOCK}
+	$${AT}$${SED} 's|:| $$@ :|' $$@ $${SED_END} $${BLOCK}
+	$${AT}$${SED} '1 s|^|$${@D}/|' $$@ $${SED_END} $${BLOCK}
 endef
 
 ################################################################################

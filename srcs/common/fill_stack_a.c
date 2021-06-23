@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/06/13 23:26:44 by user             ###   ########.fr       */
+/*   Updated: 2021/06/23 12:53:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,8 @@
 void			push_swap_error(t_frame *frame)
 {
 	write(2, "Error\n", 6);
-	push_swap_free(frame);
 	exit(-1);
 }
-
-/* int     duplicates(int  bucket[])
-{
-    
-} */
 
 int             error_check(int to_check)
 {
@@ -31,7 +25,7 @@ int             error_check(int to_check)
     unsigned char c;
 
     c = (unsigned char)to_check;
-    if(ft_is_digit(to_check) == 0 && 
+    if(ft_isdigit(to_check) == 0 && 
         to_check >(-test + 1) && to_check < test)
         {
             map[c] += 1;
@@ -39,9 +33,4 @@ int             error_check(int to_check)
                 return(0);
         }
     return(1);
-}
-
-void            fill_stack_a(t_frame *frame, t_stack_info *info)
-{
-
 }

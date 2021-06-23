@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/12 10:27:37 by user             ###   ########.fr       */
+/*   Updated: 2021/06/23 13:23:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <limits.h>
 # include <fcntl.h>
 # include </Users/mvaldeta/02.push_swap/libft/includes/libft.h>
@@ -154,7 +155,15 @@ char			**ft_split(char const *s, char c);
 ** 	Part 4 - Printing functions
 */
 
+void	print_the_stack(t_stack_info *element, char id);
 int		print_stack(int stack, char *str);
 int		print_info(char *str);
+
+
+int             error_check(int to_check);
+void			push_swap_error(t_frame *frame);
+t_frame         *init_frame(t_frame *frame, char **argv);
+
+
 
 #endif

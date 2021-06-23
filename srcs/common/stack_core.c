@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/11 20:02:58 by user             ###   ########.fr       */
+/*   Updated: 2021/06/23 12:53:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,25 @@ t_stack_link *stack_append(t_stack_info *stack, t_stack_link *new, int i)
 	stack->tail = to_insert;
 
 	return (to_insert);
-}§
+}
 
 int find_value(t_stack_link *value, int the_one)
 {
 	while (value->value != the_one)
 		value = value->next;
 	return (value->value);
+}
+
+void	print_the_stack(t_stack_info *element, char id)
+{
+	element = element->head;
+	while(element->head->next != NULL)
+	{
+		printf("%d\n", element->head->value);
+		printf("next :%p\n", element->head->next);
+		printf("node :%p\n\n", element);
+		element = element->head->next;
+	}
 }
 
 
