@@ -13,13 +13,13 @@
 #include "../../includes/pslib.h"
 #include "../../libft/includes/libft.h"
 
-void			push_swap_error(t_frame *frame)
+void push_swap_error()
 {
-	write(2, "Error\n", 6);
-	exit(-1);
+    write(2, "Error\n", 6);
+    exit(-1);
 }
 
-int             error_check(int to_check)
+int error_check(int to_check)
 {
     long int test = 2147483647;
     int map[256] = {0};
@@ -27,13 +27,11 @@ int             error_check(int to_check)
 
     printf("arrived in function: %d\n", to_check);
     c = (unsigned char)to_check;
-    if(ft_isalpha(to_check))
-        return(printf("error: not a number\n"));
-    if(to_check >(-test + 1) && to_check < test)
-        {
-            map[c] += 1;
-            if(map[c] < 2)
-                return(0);
-        }
-    return(1);
+    if (map[c] == 1)
+        push_swap_error();
+    if (ft_isalpha(to_check))
+        push_swap_error();
+    if (!map[c])
+        map[c] = 1;
+return (0);
 }

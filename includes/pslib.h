@@ -170,7 +170,7 @@ int		print_info(char *str);
 
 
 int             error_check(int to_check);
-void			push_swap_error(t_frame *frame);
+void			push_swap_error();
 t_frame         *init_frame(t_frame *frame, char **argv);
 
 

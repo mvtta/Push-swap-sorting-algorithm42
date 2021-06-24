@@ -31,13 +31,11 @@ t_stack_link *new_link(int data, t_stack_info *stack)
 
 t_stack_info *new_stack(void)
 {
-	printf("%s", "esta,psnonewstack\n");
 	t_stack_info *new;
 	new = malloc(sizeof(t_stack_info));
 	new->head = NULL;
 	new->tail = NULL;
 	new->size = 0;
-
 	return (new);
 }
 
