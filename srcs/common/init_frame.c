@@ -27,7 +27,7 @@ t_frame         *init_frame(t_frame *frame, char **argv)
     frame->str = NULL;
     frame->print_stacks = NULL;
     frame->do_write = 0;
-    QUARTER = 0;
+    QUARTER = 0
     MEDIAN = 0;
     THREE_Q = 0;
     BIGGEST = 0;

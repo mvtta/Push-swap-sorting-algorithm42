@@ -43,7 +43,7 @@ int main(int argc, char **argv)
     }
 
 /*     todo:
-    1)make checker work
+    1)make checker work: error has several probs but someting is there
     2)re-arrange init frame 
     3)at last decide strategy, don't do anymore reserach */
     return (0);

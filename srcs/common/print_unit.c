@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 #include <stdio.h>
 
 /* \E[H\E[2J = escape sequance to clear window */

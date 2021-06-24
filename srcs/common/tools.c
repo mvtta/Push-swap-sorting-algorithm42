@@ -11,5 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 #include <stdio.h>
 

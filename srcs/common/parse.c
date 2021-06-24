@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../includes/pslib.h"
+#include "../../libft/includes/libft.h"
 
 /* int		main(int ac, char **av)
 {
