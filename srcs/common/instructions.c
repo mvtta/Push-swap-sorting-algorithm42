@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <user@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/08 10:11:22 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/25 23:39:00 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "pslib.h"
+#include "../../includes/pslib.h"
+
+int     go_sa(t_stack_info *label);

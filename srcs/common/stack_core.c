@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/23 12:53:25 by user             ###   ########.fr       */
+/*   Updated: 2021/06/25 22:41:01 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int stack_tail_peek(t_stack_info *stack)
 	return (stack->tail->value);
 }
 
-t_stack_link *stack_append(t_stack_info *stack, t_stack_link *new, int i)
+t_stack_link *stack_append(t_stack_info *stack, int i)
 {
 	t_stack_link *to_insert;
 	to_insert = new_link(i, stack);
@@ -103,7 +103,7 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
-void	print_the_stack(t_stack_info *stack, t_stack_link *element, char id)
+void	print_the_stack(t_stack_info *stack, t_stack_link *element)
 {
 
 	element = stack->head;

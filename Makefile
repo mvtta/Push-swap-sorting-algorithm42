@@ -44,10 +44,9 @@ VERBOSE = 1
 ################################################################################
 
 CC = gcc
-
-#CFLAGS = -Wall -Wextra -Werror -Wvla
+CFLAGS = -Wall -Wextra -Werror -Wvla
 DFLAGS = -g
-#SANITIZE = -fsanitize=address
+SANITIZE = -fsanitize=address
 
 ################################################################################
 # Folders & Files

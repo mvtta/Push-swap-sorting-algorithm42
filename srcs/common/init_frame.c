@@ -11,23 +11,16 @@
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
-#include "../../libft/includes/libft.h"
 
-t_frame         *init_frame(t_frame *frame, char **argv)
+t_frame *init_frame(t_frame *frame, char **argv)
 {
-/*     frame = (t_frame*)malloc(sizeof(t_frame));
+    frame = malloc(sizeof(t_frame));
     if (!frame)
         exit(1);
     frame->a = NULL;
     frame->b = NULL;
-    frame->a->size = 0;
-    frame->b->size = 0;
     frame->argv = argv;
-    frame->line = NULL;
-    frame->str = NULL;
-    frame->print_stacks = NULL;
-    frame->do_write = 0;
-    QUARTER = 0
+    QUARTER = 0;
     MEDIAN = 0;
     THREE_Q = 0;
     BIGGEST = 0;
@@ -38,6 +31,7 @@ t_frame         *init_frame(t_frame *frame, char **argv)
     SMALL_ROTATE = 0;
     SMALL_RROTATE = 0;
     SMALL_FLAG = 0;
+    COUNTER = 1;
     frame->after_rotate = 0;
-    return(frame); */
+    return (frame);
 }

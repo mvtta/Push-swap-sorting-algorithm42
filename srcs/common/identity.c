@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   identity.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 09:30:06 by user              #+#    #+#             */
-/*   Updated: 2021/06/25 22:53:43 by mvaldeta         ###   ########.fr       */
+/*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
+/*   Updated: 2021/06/25 15:42:01 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
-#include "../../libft/includes/libft.h"
 
-/* int     main(int argc, char **argv)
+int     check_sorted(t_stack_info *label, t_stack_link *node)
 {
-    t_frame     *frame;
+    int counter;
 
-    frame = NULL;
-    if(argc > 2)
-        return(1);
+    counter = label->size;
+    node = label->head;
+    if (counter == 1)
+        exit(SORTED);
+    while(counter-- != 0)
+    {
+        if(node->value < node->next->value)
+            exit(SORTED); 
+    }
     return(0);
-} */
+}
 

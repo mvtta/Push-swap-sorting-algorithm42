@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_unit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 19:25:46 by user              #+#    #+#             */
-/*   Updated: 2021/05/29 10:13:56 by user             ###   ########.fr       */
+/*   Updated: 2021/06/25 22:36:32 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 int    print_stack(int stack, char *str)
 {
     printf(" %d\n", stack);
-/*     printf("%s\n", "----");
-    printf("%s\n", str); */
+    printf("%s\n", "----");
+    printf("%s\n", str);
     return(0);  
 
 }

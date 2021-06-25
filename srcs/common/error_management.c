@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_stack_a.c                                     :+:      :+:    :+:   */
+/*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/06/23 12:53:42 by user             ###   ########.fr       */
+/*   Updated: 2021/06/26 00:39:38 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 #include "../../libft/includes/libft.h"
+
+
 
 void push_swap_error()
 {
@@ -19,19 +21,31 @@ void push_swap_error()
     exit(-1);
 }
 
+int intdup(int to_check)
+{
+    static int space;
+    int *save = malloc(sizeof(int) * space);
+    if(!save)
+        return(0);
+    save[space + 1] = to_check;
+    while(save)
+    {
+        if(*save == to_check)
+            return(1);
+        save++;
+    }
+    save[space + 1] = to_check;
+    space += 1;
+    return(0);
+}
+
 int error_check(int to_check)
 {
-    long int test = 2147483647;
-    int map[256] = {0};
-    unsigned char c;
-
-    printf("arrived in function: %d\n", to_check);
-    c = (unsigned char)to_check;
-    if (map[c] == 1)
+    //printf("here\n");
+    //printf("to check is : %i\n", to_check);
+    if(ft_isalpha(to_check) == 1)
         push_swap_error();
-    if (ft_isalpha(to_check))
+    if(intdup(to_check) == 1)
         push_swap_error();
-    if (!map[c])
-        map[c] = 1;
-return (0);
+    return(0);
 }
