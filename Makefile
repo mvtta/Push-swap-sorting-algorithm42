@@ -43,8 +43,8 @@ VERBOSE = 1
 # https://www.gnu.org/software/make/manual/html_node/Flavors.html#Flavors
 ################################################################################
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Wvla
+CC = gcc -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-Wvla
 DFLAGS = -g
 SANITIZE = -fsanitize=address
 

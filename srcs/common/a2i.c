@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:24:00 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/25 18:52:11 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:03:13 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	process(const char *str)
 {
 	int	sign;
 	int	res;
-
+/* 
 	if(ft_isalpha(*str) == 1)
-         push_swap_error();
+         push_swap_error(); */
 	sign = 1;
 	while (checkspace(*str))
 		str++;

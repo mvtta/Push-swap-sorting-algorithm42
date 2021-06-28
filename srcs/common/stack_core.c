@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/25 22:41:01 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 20:28:11 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ t_stack_link *new_link(int data, t_stack_info *stack)
 	new = malloc(sizeof(t_stack_link));
 
 	new->value = data;
-	new->prev = new->next;
+	new->prev = NULL;
 	new->next = NULL;
 	stack->size++;
-
 	return (new);
 }
 
@@ -88,12 +87,20 @@ int stack_tail_peek(t_stack_info *stack)
 
 t_stack_link *stack_append(t_stack_info *stack, int i)
 {
-	t_stack_link *to_insert;
-	to_insert = new_link(i, stack);
-	to_insert->prev = stack->tail;
-	stack->tail = to_insert;
-
+	t_stack_link *to_insert = NULL;
+	if(stack->head == NULL)
+	{	
+		to_insert = new_link(i, stack);
+		stack->tail = to_insert;
+	}
+	else
+	{
+		to_insert = new_link(i, stack);
+		to_insert->prev = stack->tail;
+		stack->tail = to_insert; 
+	}
 	return (to_insert);
+	/* FIX THIS */
 }
 
 int find_value(t_stack_link *value, int the_one)
@@ -105,13 +112,13 @@ int find_value(t_stack_link *value, int the_one)
 
 void	print_the_stack(t_stack_info *stack, t_stack_link *element)
 {
-
+	printf("here");
 	element = stack->head;
 	while(element->next != NULL)
 	{
-		printf("%d\n", element->value);
-		printf("next :%p\n", element->next);
-		printf("node :%p\n\n", element);
+		printf("element value:%d\n", element->value);
+		printf("next ptr:%p\n", element->next);
+		printf("current node ptr:%p\n\n", element);
 		element = element->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/25 23:50:22 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 18:51:59 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_frame
 	int					small_flag;
 	int					after_rotate;
 	int					counter;
+	int					*save;
 
 } t_frame;
 
@@ -66,7 +67,7 @@ typedef struct s_frame
 #define	A
 #define	B
 #define COUNTER			frame->counter
-#define NEW			frame->element->next
+#define NEW				frame->element->next
 #define NEXT			frame->element->next
 #define A_HEAD			frame->a->head
 #define B_HEAD
@@ -167,7 +168,7 @@ void		print_the_stack(t_stack_info *stack, t_stack_link *element);
 int		print_stack(int stack, char *str);
 int		print_info(char *str);
 
-int		error_check(int to_check);
+int 	error_check(int *array, int array_size, int to_check);
 void 	push_swap_error();
 t_frame *init_frame(t_frame *frame, char **argv);
 int	process(const char *str);

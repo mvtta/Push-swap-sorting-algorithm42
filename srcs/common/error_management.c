@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/06/26 00:39:38 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 20:11:33 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,28 @@ void push_swap_error()
     exit(-1);
 }
 
-int intdup(int to_check)
+int error_check(int *array, int array_size, int to_check)
 {
-    static int space;
-    int *save = malloc(sizeof(int) * space);
-    if(!save)
+    if(!array)
         return(0);
-    save[space + 1] = to_check;
-    while(save)
+    if(array_size == 1)
+        return(0);
+    int i = 0;
+    while(i < array_size)
     {
-        if(*save == to_check)
-            return(1);
-        save++;
+        if(array[i] == to_check)
+            push_swap_error();
+        i++;
     }
-    save[space + 1] = to_check;
-    space += 1;
     return(0);
 }
 
-int error_check(int to_check)
+/* 
+int error_check(t_frame *frame, int to_check)
 {
-    //printf("here\n");
-    //printf("to check is : %i\n", to_check);
     if(ft_isalpha(to_check) == 1)
         push_swap_error();
-    if(intdup(to_check) == 1)
+    if(intdup(frame, to_check) == 1)
         push_swap_error();
     return(0);
-}
+} */
