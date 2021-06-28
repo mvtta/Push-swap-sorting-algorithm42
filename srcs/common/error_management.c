@@ -6,14 +6,11 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/06/28 20:11:33 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 23:41:30 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
-#include "../../libft/includes/libft.h"
-
-
 
 void push_swap_error()
 {
@@ -23,26 +20,21 @@ void push_swap_error()
 
 int error_check(int *array, int array_size, int to_check)
 {
+    int freq = 0;
+    int i = 0;
+    
     if(!array)
         return(0);
     if(array_size == 1)
         return(0);
-    int i = 0;
-    while(i < array_size)
+    while(i < array_size + 1)
     {
         if(array[i] == to_check)
-            push_swap_error();
+            freq+=1;
         i++;
     }
+    if(freq > 1)
+        push_swap_error();
     return(0);
 }
 
-/* 
-int error_check(t_frame *frame, int to_check)
-{
-    if(ft_isalpha(to_check) == 1)
-        push_swap_error();
-    if(intdup(frame, to_check) == 1)
-        push_swap_error();
-    return(0);
-} */

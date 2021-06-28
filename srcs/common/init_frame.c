@@ -31,7 +31,7 @@ t_frame *init_frame(t_frame *frame, char **argv)
     SMALL_ROTATE = 0;
     SMALL_RROTATE = 0;
     SMALL_FLAG = 0;
-    COUNTER = 0;
+    INDEX = 0;
     frame->after_rotate = 0;
     return (frame);
 }

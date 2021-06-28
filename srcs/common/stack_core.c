@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 20:28:11 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 23:41:37 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../../includes/pslib.h"
 #include "../../libft/includes/libft.h"
 
-t_stack_link *new_link(int data, t_stack_info *stack)
+t_stack_link *new_link(t_stack_info *stack, int data)
 {
 	t_stack_link *new;
 	new = malloc(sizeof(t_stack_link));
@@ -88,17 +88,24 @@ int stack_tail_peek(t_stack_info *stack)
 t_stack_link *stack_append(t_stack_info *stack, int i)
 {
 	t_stack_link *to_insert = NULL;
-	if(stack->head == NULL)
-	{	
-		to_insert = new_link(i, stack);
+
+	if (stack->head == NULL)
+	{
+		//printf("here1\n");
+		to_insert = new_link(stack, i);
+		stack->head = to_insert;
 		stack->tail = to_insert;
+		stack->head->prev = NULL;
 	}
 	else
 	{
-		to_insert = new_link(i, stack);
+		//printf("here2\n");
+		to_insert = new_link(stack, i);
 		to_insert->prev = stack->tail;
-		stack->tail = to_insert; 
+		stack->tail->next = to_insert;
+		stack->tail = to_insert;
 	}
+	//printf("node: %p, value: %d, prev:%p\n", to_insert, to_insert->value, to_insert->prev);
 	return (to_insert);
 	/* FIX THIS */
 }
@@ -110,66 +117,18 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
-void	print_the_stack(t_stack_info *stack, t_stack_link *element)
+void print_the_stack(t_stack_info *stack, t_stack_link *element)
 {
-	printf("here");
+	//printf("received->next:%d\n", element->next->value);
 	element = stack->head;
-	while(element->next != NULL)
+	while (element->next)
 	{
 		printf("element value:%d\n", element->value);
 		printf("next ptr:%p\n", element->next);
 		printf("current node ptr:%p\n\n", element);
 		element = element->next;
 	}
+	printf("element value:%d\n", element->value);
+	printf("next ptr:%p\n", element->next);
+	printf("current node ptr:%p\n\n", element);
 }
-
-
-/* int main(void)
-{
-	t_stack_info *stack = NULL;
-	t_stack_link *element = NULL;
-	int i = 0;
-	stack = new_stack();
-	element = new_link(i, stack);
-	stack->head = element;
-	printf("%d\n", element->value);
-	while (i++ <= 10)
-	{
-		element->next = stack_append(stack, element, i);
-		element = element->next;
-	}
-	element = stack->head;
-	while(element->next != NULL)
-	{
-		printf("%d\n", element->value);
-		printf("next :%p\n", element->next);
-		printf("node :%p\n\n", element);
-		element = element->next;
-	}
-	while (element != stack->tail)
-	{
-		printf("%d\n", element->value);
-		printf("next :%p\n", element->next);
-		printf("node :%p\n\n", element);
-		element = element->next;
-	}
-	printf("size before pop: %d\n", stack->size);
-	stack_pop_back(stack);
-	printf("size after pop: %d\n", stack->size);
-	printf("size before pop2: %d\n", stack->size);
-	stack_pop_back(stack);
-	printf("size after pop2: %d\n", stack->size);
-	element = stack->head;
-	printf("find value: %d\n", find_value(element, 7));
-	element = stack->head;
-	stack_pop_front(stack);
-	printf("size after pop-front: %d\n", stack->size);
-	element = stack->head;
-	while (element != stack->tail)
-	{
-		printf("%d\n", element->value);
-		printf("next :%p\n", element->next);
-		printf("node :%p\n\n", element);
-		element = element->next;
-	}
-} */

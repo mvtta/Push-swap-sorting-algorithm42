@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 18:51:59 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/28 23:40:45 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_frame
 #define SMALL_FLAG		frame->small_flag
 #define	A
 #define	B
-#define COUNTER			frame->counter
+#define INDEX			frame->counter
 #define NEW				frame->element->next
 #define NEXT			frame->element->next
 #define A_HEAD			frame->a->head
@@ -127,54 +127,54 @@ typedef void (*t_table)(t_frame *frame);
 ** Checker functions
 */
 
-void do_launch(t_frame *frame);
-void sort_test(t_frame *frame);
+void 			do_launch(t_frame *frame);
+void 			sort_test(t_frame *frame);
 
 /*
 ** Part 1 -	Libc functions
 */
 
-int ft_atoi(const char *str);
+int 			ft_atoi(const char *str);
 
 /*
 ** 	Part 2 - Additional functions
 */
 
-void ft_putchar_fd(char c, int fd);
-void ft_putstr_fd(char *s, int fd);
-void ft_putendl_fd(char *s, int fd);
-void ft_putnbr_fd(int n, int fd);
-char **ft_split(char const *s, char c);
+void 			ft_putchar_fd(char c, int fd);
+void 			ft_putstr_fd(char *s, int fd);
+void 			ft_putendl_fd(char *s, int fd);
+void 			ft_putnbr_fd(int n, int fd);
+char 			**ft_split(char const *s, char c);
 
 /*
 ** 	Part 3 - Stack functions
 */
 
-t_stack_info *new_stack(void);
-t_stack_link *new_link(int data, t_stack_info *stack);
-void stack_pop_front(t_stack_info *stack);
-void stack_pop_back(t_stack_info *stack);
-void stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
-int stack_top_peek(t_stack_info *stack);
-int stack_tail_peek(t_stack_info *stack);
-t_stack_link *stack_append(t_stack_info *stack, int i);
-int			find_value(t_stack_link *value, int the_one);
-void		print_the_stack(t_stack_info *stack, t_stack_link *element);
+t_stack_info 	*new_stack(void);
+t_stack_link 	*new_link(t_stack_info *stack, int data);
+void 			stack_pop_front(t_stack_info *stack);
+void 			stack_pop_back(t_stack_info *stack);
+void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
+int 			stack_top_peek(t_stack_info *stack);
+int 			stack_tail_peek(t_stack_info *stack);
+t_stack_link 	*stack_append(t_stack_info *stack, int i);
+int				find_value(t_stack_link *value, int the_one);
+void			print_the_stack(t_stack_info *stack, t_stack_link *element);
 
 /*
 ** 	Part 4 - Printing functions
 */
 
-int		print_stack(int stack, char *str);
-int		print_info(char *str);
+int				print_stack(int stack, char *str);
+int				print_info(char *str);
 
-int 	error_check(int *array, int array_size, int to_check);
-void 	push_swap_error();
-t_frame *init_frame(t_frame *frame, char **argv);
-int	process(const char *str);
+int 			error_check(int *array, int array_size, int to_check);
+void 			push_swap_error();
+t_frame 		*init_frame(t_frame *frame, char **argv);
+int				process(const char *str);
 
 /* identity */
-int     check_sorted(t_stack_info *label, t_stack_link *node);
-int		qprocess(const char *str);
+int     		check_sorted(t_stack_info *label, t_stack_link *node, int size);
+int				qprocess(const char *str);
 
 #endif
