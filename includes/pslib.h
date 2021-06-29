@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 23:40:45 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/29 14:50:20 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_stack_info
 ** Funtion ptr aka jump table
 */
 
-typedef void (*t_table)(t_frame *frame);
+typedef void 	(*t_table)(t_frame *frame);
 
 /*
 ** Checker functions
@@ -176,5 +176,19 @@ int				process(const char *str);
 /* identity */
 int     		check_sorted(t_stack_info *label, t_stack_link *node, int size);
 int				qprocess(const char *str);
+
+/* instructions */
+
+int     do_sa(t_stack_info *label);
+int     do_sb(t_stack_info *label);
+int     do_ss(t_stack_info *label);
+int     do_pa(t_stack_info *label);
+int     do_pb(t_stack_info *label);
+int     do_ra(t_stack_info *label);
+int     do_rb(t_stack_info *label);
+int     do_rr(t_stack_info *label);
+int     do_rra(t_stack_info *label);
+int     do_rrb(t_stack_info *label);
+int     do_rrr(t_stack_info *label);
 
 #endif
