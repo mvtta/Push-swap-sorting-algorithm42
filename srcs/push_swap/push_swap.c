@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/06/29 15:08:47 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/06/30 13:12:59 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int main(int argc, char **argv)
         i++;
     }
     print_the_stack(frame->a, frame->element);
+    printf("------ Changement --------\n");
     do_sa(frame->a);
     print_the_stack(frame->a, frame->element);
     check_sorted(frame->a, frame->element, frame->a->size);
