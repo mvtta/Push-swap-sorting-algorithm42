@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 23:41:37 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/03 12:08:57 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ static inline t_stack_link **find_link(t_stack_info *stack, t_stack_link *target
 	while ((*p) && (*p) != target)
 		p = &(*p)->next;
 	return p;
+}
+
+void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s)
+{
+	if(target->size == 0)
+		stack_append(target, source->head->value);
+	new_head_s = source->head->next;
+	new_head_s->next = source->head->next->next;
+	source->head->next = target->head->prev;
+	target->head = source->head;
+	source->head = new_head_s;		
 }
 
 void stack_pop_front(t_stack_info *stack)

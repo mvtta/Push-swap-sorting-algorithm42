@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/30 13:12:43 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/03 11:43:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ t_stack_info 	*new_stack(void);
 t_stack_link 	*new_link(t_stack_info *stack, int data);
 void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
+void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
 int 			stack_top_peek(t_stack_info *stack);
 int 			stack_tail_peek(t_stack_info *stack);
@@ -182,8 +183,8 @@ int				qprocess(const char *str);
 int     do_sa(t_stack_info *label);
 int     do_sb(t_stack_info *label);
 int     do_ss(t_stack_info *label);
-int     do_pa(t_stack_info *label);
-int     do_pb(t_stack_info *label);
+int    	do_pa(t_frame *frame);
+int 	do_pb(t_frame *frame);
 int     do_ra(t_stack_info *label);
 int     do_rb(t_stack_info *label);
 int     do_rr(t_stack_info *label);

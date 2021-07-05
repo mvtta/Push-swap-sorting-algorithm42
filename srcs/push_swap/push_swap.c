@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/06/30 13:12:59 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/03 12:10:40 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     frame->b = new_stack();
     int i = 1;
     while (argv[i])
-    { 
+    {
         frame->element = stack_append(frame->a, process(argv[i]));
         temp[INDEX] = frame->element->value;
         INDEX++;
@@ -34,9 +34,15 @@ int main(int argc, char **argv)
         i++;
     }
     print_the_stack(frame->a, frame->element);
-    printf("------ Changement --------\n");
+    printf("------ Changement SA --------\n");
     do_sa(frame->a);
     print_the_stack(frame->a, frame->element);
+    printf("------ Changement PB --------\n");
+    do_pb(frame);
+    printf("------ Changement A --------\n");
+    print_the_stack(frame->a, frame->element);
+    printf("------ Changement B --------\n");
+    print_the_stack(frame->b, frame->element);
     check_sorted(frame->a, frame->element, frame->a->size);
     free(frame);
     frame = NULL;

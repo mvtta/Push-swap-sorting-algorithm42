@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/30 14:03:00 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/03 20:16:10 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,20 @@ int do_ss(t_stack_info *label)
     return(0);
 }
 
-/* int do_pa(t_stack_info *label)
+int do_pa(t_frame *frame)
 {
-} */
+    stack_push(frame->b, frame->a, frame->element);
+    return(0);
+} 
 
-/* int do_pb(t_stack_info *label)
+int do_pb(t_frame *frame)
 {
-
+    stack_push(frame->a, frame->b, frame->element);
+    return(0);
 }
-int do_ra(t_stack_info *label)
+
+
+/* int do_ra(t_stack_info *label)
 {
 }
 int do_rb(t_stack_info *label)
@@ -67,6 +72,6 @@ int do_rra(t_stack_info *label)
 int do_rrb(t_stack_info *label)
 {
 }
-int do_rrr(t_stack_info *label){
-
+int do_rrr(t_stack_info *label)
+{
 } */
