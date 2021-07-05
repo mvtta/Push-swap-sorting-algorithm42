@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/03 11:43:59 by user             ###   ########.fr       */
+/*   Updated: 2021/07/05 18:40:22 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_frame
 {
 	struct s_stack_info *a;
 	struct s_stack_info *b;
+	struct s_stack_info *rotate;
 	struct s_stack_link *element;
 
 	char				**argv;
@@ -185,7 +186,7 @@ int     do_sb(t_stack_info *label);
 int     do_ss(t_stack_info *label);
 int    	do_pa(t_frame *frame);
 int 	do_pb(t_frame *frame);
-int     do_ra(t_stack_info *label);
+int 	do_ra(t_frame *frame);
 int     do_rb(t_stack_info *label);
 int     do_rr(t_stack_info *label);
 int     do_rra(t_stack_info *label);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/03 20:16:10 by user             ###   ########.fr       */
+/*   Updated: 2021/07/05 19:34:11 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,31 @@ int do_ss(t_stack_info *label)
 {
     do_sa(label);
     do_sb(label);
-    return(0);
+    return (0);
 }
 
 int do_pa(t_frame *frame)
 {
     stack_push(frame->b, frame->a, frame->element);
-    return(0);
-} 
+    return (0);
+}
 
 int do_pb(t_frame *frame)
 {
     stack_push(frame->a, frame->b, frame->element);
-    return(0);
+    return (0);
 }
 
+int do_ra(t_frame *frame)
+{
+    t_stack_link *tmp;
+    
+    while (frame->a != NULL)
+    {
+        
+    }
+    return(0);
+}
 
 /* int do_ra(t_stack_info *label)
 {

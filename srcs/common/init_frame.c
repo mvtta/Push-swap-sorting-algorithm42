@@ -17,6 +17,7 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame = malloc(sizeof(t_frame));
     if (!frame)
         exit(1);
+    frame->rotate = NULL;
     frame->a = NULL;
     frame->b = NULL;
     frame->argv = argv;
