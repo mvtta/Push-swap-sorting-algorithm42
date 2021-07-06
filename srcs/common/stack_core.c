@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/03 12:08:57 by user             ###   ########.fr       */
+/*   Updated: 2021/07/06 21:24:46 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,19 @@ t_stack_link *stack_append(t_stack_info *stack, int i)
 		stack->tail->next = to_insert;
 		stack->tail = to_insert;
 	}
-	//printf("node: %p, value: %d, prev:%p\n", to_insert, to_insert->value, to_insert->prev);
 	return (to_insert);
-	/* FIX THIS */
+}
+
+t_stack_link *stack_add_front(t_stack_info *stack, int i)
+{
+	t_stack_link *to_insert = NULL;
+
+	to_insert = new_link(stack, i);
+	to_insert->next = stack->head;
+	to_insert->prev = NULL;
+	stack->head = to_insert;
+
+	return (to_insert);
 }
 
 int find_value(t_stack_link *value, int the_one)
@@ -130,16 +140,14 @@ int find_value(t_stack_link *value, int the_one)
 
 void print_the_stack(t_stack_info *stack, t_stack_link *element)
 {
-	//printf("received->next:%d\n", element->next->value);
 	element = stack->head;
-	while (element->next)
+/* 	printf("stack head:  %d\n", stack->head->value);
+	printf("stack head->next:  %d\n", stack->head->next->value); */
+	while (element->next != NULL)
 	{
 		printf("element value:%d\n", element->value);
 		printf("next ptr:%p\n", element->next);
 		printf("current node ptr:%p\n\n", element);
 		element = element->next;
 	}
-	printf("element value:%d\n", element->value);
-	printf("next ptr:%p\n", element->next);
-	printf("current node ptr:%p\n\n", element);
 }

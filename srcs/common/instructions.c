@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/05 19:34:11 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:29:10 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,26 @@ int do_pb(t_frame *frame)
     stack_push(frame->a, frame->b, frame->element);
     return (0);
 }
-
 int do_ra(t_frame *frame)
 {
-    t_stack_link *tmp;
-    
-    while (frame->a != NULL)
-    {
+    frame->rotate = new_stack();
+    frame->rotate->head = frame->a->head;
+    frame->element = frame->rotate->head;
         
+    while (frame->a->tail)
+    {
+        frame->element = stack_add_front(frame->rotate, frame->a->tail->value);
+        printf("value on the top: %d\n", frame->rotate->head->value);
+        frame->a->tail = frame->a->tail->prev;
+        frame->element = frame->element->next;
     }
-    return(0);
+    free(frame->a);
+    frame->a = NULL;
+    frame->a = frame->rotate;
+/*     printf("------ Print Rotate --------\n");
+    t_stack_link *new = NULL;
+    print_the_stack(frame->rotate, new); */
+    return (0);
 }
 
 /* int do_ra(t_stack_info *label)

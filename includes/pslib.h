@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/05 18:40:22 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:25:33 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int 			stack_tail_peek(t_stack_info *stack);
 t_stack_link 	*stack_append(t_stack_info *stack, int i);
 int				find_value(t_stack_link *value, int the_one);
 void			print_the_stack(t_stack_info *stack, t_stack_link *element);
+t_stack_link *stack_add_front(t_stack_info *stack, int i);
 
 /*
 ** 	Part 4 - Printing functions

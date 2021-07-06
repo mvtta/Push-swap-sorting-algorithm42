@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/07/05 19:19:24 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:29:57 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ int main(int argc, char **argv)
     }
     print_the_stack(frame->a, frame->element);
     printf("------ Changement SA --------\n");
-    do_sa(frame->a);
-    print_the_stack(frame->a, frame->element);
+    //do_sa(frame->a);
+    //print_the_stack(frame->a, frame->element);
     printf("------ Changement PB --------\n");
-    do_pb(frame);
+    //do_pb(frame);
     printf("------ Rotate A --------\n");
     do_ra(frame);
+    printf("------ Print Rotate --------\n");
     print_the_stack(frame->a, frame->element);
-    check_sorted(frame->a, frame->element, frame->a->size);
+    //check_sorted(frame->a, frame->element, frame->a->size);
     free(frame);
     frame = NULL;
     return (0);

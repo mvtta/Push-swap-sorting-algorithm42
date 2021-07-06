@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 23:41:02 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/06 21:08:51 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int     check_sorted(t_stack_info *label, t_stack_link *node, int size)
         exit(SORTED);
     }
     node = label->head;
-    while(node->next)
+    while(node)
     {
         if(node->value < node->next->value)
             sorted+=1; 
