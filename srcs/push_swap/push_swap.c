@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/07/06 21:29:57 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/07 10:52:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main(int argc, char **argv)
     do_ra(frame);
     printf("------ Print Rotate --------\n");
     print_the_stack(frame->a, frame->element);
+    printf("size is: %d\n", frame->a->size);
     //check_sorted(frame->a, frame->element, frame->a->size);
     free(frame);
     frame = NULL;

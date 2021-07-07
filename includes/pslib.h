@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/06 18:25:33 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/07 11:45:00 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,14 @@ int     do_ss(t_stack_info *label);
 int    	do_pa(t_frame *frame);
 int 	do_pb(t_frame *frame);
 int 	do_ra(t_frame *frame);
-int     do_rb(t_stack_info *label);
-int     do_rr(t_stack_info *label);
-int     do_rra(t_stack_info *label);
-int     do_rrb(t_stack_info *label);
-int     do_rrr(t_stack_info *label);
+int     do_rb(t_frame *frame);
+int     do_rr(t_frame *frame);
+int     do_rra(t_frame *frame);
+int     do_rrb(t_frame *frame);
+int     do_rrr(t_frame *frame);
+
+/* solutions */
+
+void do_solution_1(t_frame *frame)
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/06 21:29:10 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/07 11:01:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,40 +58,60 @@ int do_pb(t_frame *frame)
 int do_ra(t_frame *frame)
 {
     frame->rotate = new_stack();
-    frame->rotate->head = frame->a->head;
+    frame->rotate->head = frame->a->tail;
     frame->element = frame->rotate->head;
-        
+
     while (frame->a->tail)
     {
         frame->element = stack_add_front(frame->rotate, frame->a->tail->value);
-        printf("value on the top: %d\n", frame->rotate->head->value);
+        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
         frame->a->tail = frame->a->tail->prev;
         frame->element = frame->element->next;
     }
     free(frame->a);
     frame->a = NULL;
     frame->a = frame->rotate;
-/*     printf("------ Print Rotate --------\n");
-    t_stack_link *new = NULL;
-    print_the_stack(frame->rotate, new); */
+    return (0);
+}
+int do_rb(t_frame *frame)
+{
+    frame->rotate = new_stack();
+    frame->rotate->head = frame->b->tail;
+    frame->element = frame->rotate->head;
+
+    while (frame->b->tail)
+    {
+        frame->element = stack_add_front(frame->rotate, frame->b->tail->value);
+        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
+        frame->b->tail = frame->b->tail->prev;
+        frame->element = frame->element->next;
+    }
+    free(frame->b);
+    frame->b = NULL;
+    frame->b = frame->rotate;
     return (0);
 }
 
-/* int do_ra(t_stack_info *label)
+
+int do_rr(t_frame *frame)
 {
+    do_ra(frame);
+    do_rb(frame);
+    return (0);
 }
-int do_rb(t_stack_info *label)
+int do_rra(t_frame *frame)
 {
+    do_ra(frame);
+    return (0);
 }
-int do_rr(t_stack_info *label)
+int do_rrb(t_frame *frame)
 {
+    do_rb(frame);
+    return (0);
 }
-int do_rra(t_stack_info *label)
+int do_rrr(t_frame *frame)
 {
+    do_ra(frame);
+    do_rb(frame);
+    return (0);
 }
-int do_rrb(t_stack_info *label)
-{
-}
-int do_rrr(t_stack_info *label)
-{
-} */
