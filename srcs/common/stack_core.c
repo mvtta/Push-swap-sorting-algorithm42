@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/06 21:24:46 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/08 16:39:29 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,47 @@ void print_the_stack(t_stack_info *stack, t_stack_link *element)
 	element = stack->head;
 /* 	printf("stack head:  %d\n", stack->head->value);
 	printf("stack head->next:  %d\n", stack->head->next->value); */
-	while (element->next != NULL)
+	while (element)
 	{
 		printf("element value:%d\n", element->value);
 		printf("next ptr:%p\n", element->next);
 		printf("current node ptr:%p\n\n", element);
 		element = element->next;
 	}
+}
+
+void stack_flip_a(t_frame *frame)
+{
+    frame->rotate = new_stack();
+    frame->rotate->head = frame->a->tail;
+    frame->element = frame->rotate->head;
+
+    while (frame->a->tail)
+    {
+        frame->element = stack_add_front(frame->rotate, frame->a->tail->value);
+        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
+        frame->a->tail = frame->a->tail->prev;
+        frame->element = frame->element->next;
+    }
+    free(frame->a);
+    frame->a = NULL;
+    frame->a = frame->rotate;
+}
+
+void stack_flip_b(t_frame *frame)
+{
+    frame->rotate = new_stack();
+    frame->rotate->head = frame->b->tail;
+    frame->element = frame->rotate->head;
+
+    while (frame->b->tail)
+    {
+        frame->element = stack_add_front(frame->rotate, frame->b->tail->value);
+        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
+        frame->b->tail = frame->b->tail->prev;
+        frame->element = frame->element->next;
+    }
+    free(frame->b);
+    frame->b = NULL;
+    frame->b = frame->rotate;
 }

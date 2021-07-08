@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/07 11:45:00 by user             ###   ########.fr       */
+/*   Updated: 2021/07/08 16:28:15 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,6 @@ int     do_rrr(t_frame *frame);
 
 /* solutions */
 
-void do_solution_1(t_frame *frame)
+void do_solution_1(t_frame *frame);
 
 #endif

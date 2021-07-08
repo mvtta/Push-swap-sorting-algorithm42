@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/07/07 10:52:50 by user             ###   ########.fr       */
+/*   Updated: 2021/07/08 18:15:09 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
     printf("------ Changement PB --------\n");
     //do_pb(frame);
     printf("------ Rotate A --------\n");
-    do_ra(frame);
+    do_rra(frame);
     printf("------ Print Rotate --------\n");
     print_the_stack(frame->a, frame->element);
     printf("size is: %d\n", frame->a->size);
