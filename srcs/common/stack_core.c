@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/08 16:39:29 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/10 17:09:27 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static inline t_stack_link **find_link(t_stack_info *stack, t_stack_link *target
 
 void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s)
 {
-	if(target->size == 0)
+	if (target->size == 0)
 		stack_append(target, source->head->value);
 	new_head_s = source->head->next;
 	new_head_s->next = source->head->next->next;
 	source->head->next = target->head->prev;
 	target->head = source->head;
-	source->head = new_head_s;		
+	source->head = new_head_s;
 }
 
 void stack_pop_front(t_stack_info *stack)
@@ -138,10 +138,29 @@ int find_value(t_stack_link *value, int the_one)
 	return (value->value);
 }
 
+int find_position(t_frame *frame, int the_one, char id)
+{
+	int i;
+	
+	i = 0;
+	if (id == 'a')
+		frame->element = frame->a->head;
+	if (id == 'b')
+		frame->element = frame->b->head;
+	while (frame->element)
+	{
+		if (frame->element->value == the_one)
+			return(i);
+		frame->element = frame->element->next;
+		i += 1;
+	}
+	return (i);
+}
+
 void print_the_stack(t_stack_info *stack, t_stack_link *element)
 {
 	element = stack->head;
-/* 	printf("stack head:  %d\n", stack->head->value);
+	/* 	printf("stack head:  %d\n", stack->head->value);
 	printf("stack head->next:  %d\n", stack->head->next->value); */
 	while (element)
 	{
@@ -154,36 +173,50 @@ void print_the_stack(t_stack_info *stack, t_stack_link *element)
 
 void stack_flip_a(t_frame *frame)
 {
-    frame->rotate = new_stack();
-    frame->rotate->head = frame->a->tail;
-    frame->element = frame->rotate->head;
+	frame->rotate = new_stack();
+	frame->rotate->head = frame->a->tail;
+	frame->element = frame->rotate->head;
 
-    while (frame->a->tail)
-    {
-        frame->element = stack_add_front(frame->rotate, frame->a->tail->value);
-        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
-        frame->a->tail = frame->a->tail->prev;
-        frame->element = frame->element->next;
-    }
-    free(frame->a);
-    frame->a = NULL;
-    frame->a = frame->rotate;
+	while (frame->a->tail)
+	{
+		frame->element = stack_add_front(frame->rotate, frame->a->tail->value);
+		/*         printf("value on the top: %d\n", frame->rotate->head->value); */
+		frame->a->tail = frame->a->tail->prev;
+		frame->element = frame->element->next;
+	}
+	free(frame->a);
+	frame->a = NULL;
+	frame->a = frame->rotate;
 }
 
 void stack_flip_b(t_frame *frame)
 {
-    frame->rotate = new_stack();
-    frame->rotate->head = frame->b->tail;
-    frame->element = frame->rotate->head;
+	frame->rotate = new_stack();
+	frame->rotate->head = frame->b->tail;
+	frame->element = frame->rotate->head;
 
-    while (frame->b->tail)
-    {
-        frame->element = stack_add_front(frame->rotate, frame->b->tail->value);
-        /*         printf("value on the top: %d\n", frame->rotate->head->value); */
-        frame->b->tail = frame->b->tail->prev;
-        frame->element = frame->element->next;
-    }
-    free(frame->b);
-    frame->b = NULL;
-    frame->b = frame->rotate;
+	while (frame->b->tail)
+	{
+		frame->element = stack_add_front(frame->rotate, frame->b->tail->value);
+		/*         printf("value on the top: %d\n", frame->rotate->head->value); */
+		frame->b->tail = frame->b->tail->prev;
+		frame->element = frame->element->next;
+	}
+	free(frame->b);
+	frame->b = NULL;
+	frame->b = frame->rotate;
+}
+
+int stack_traverse(t_frame *frame, char id)
+{
+	if (id == 'a')
+		frame->element = frame->a->head;
+	else if (id == 'b')
+		frame->element = frame->b->head;
+	else
+		return (-1);
+
+	while (frame->element)
+		frame->element = frame->element->next;
+	return (0);
 }

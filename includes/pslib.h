@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/08 16:28:15 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/10 17:06:29 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,18 +151,19 @@ char 			**ft_split(char const *s, char c);
 ** 	Part 3 - Stack functions
 */
 
-t_stack_info 	*new_stack(void);
-t_stack_link 	*new_link(t_stack_info *stack, int data);
 void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
-void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
+void			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
+void			print_the_stack(t_stack_info *stack, t_stack_link *element);
+int				stack_traverse(t_frame *frame, char id);
 int 			stack_top_peek(t_stack_info *stack);
 int 			stack_tail_peek(t_stack_info *stack);
-t_stack_link 	*stack_append(t_stack_info *stack, int i);
 int				find_value(t_stack_link *value, int the_one);
-void			print_the_stack(t_stack_info *stack, t_stack_link *element);
-t_stack_link *stack_add_front(t_stack_info *stack, int i);
+t_stack_link 	*stack_append(t_stack_info *stack, int i);
+t_stack_link	*stack_add_front(t_stack_info *stack, int i);
+t_stack_link 	*new_link(t_stack_info *stack, int data);
+t_stack_info 	*new_stack(void);
 
 /*
 ** 	Part 4 - Printing functions
@@ -172,9 +173,9 @@ int				print_stack(int stack, char *str);
 int				print_info(char *str);
 
 int 			error_check(int *array, int array_size, int to_check);
+int				process(const char *str);
 void 			push_swap_error();
 t_frame 		*init_frame(t_frame *frame, char **argv);
-int				process(const char *str);
 
 /* identity */
 int     		check_sorted(t_stack_info *label, t_stack_link *node, int size);
@@ -196,6 +197,11 @@ int     do_rrr(t_frame *frame);
 
 /* solutions */
 
-void do_solution_1(t_frame *frame);
+void 	do_solution_1(t_frame *frame);
 
+/* finder */
+
+long 	find_biggest(t_frame *frame, char id);
+long 	find_smallest(t_frame *frame, char id);
+int		find_position(t_frame *frame, int the_one, char id);
 #endif

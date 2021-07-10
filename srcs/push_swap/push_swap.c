@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/07/08 18:15:09 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/10 16:17:57 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,17 @@ int main(int argc, char **argv)
     printf("------ Changement PB --------\n");
     //do_pb(frame);
     printf("------ Rotate A --------\n");
-    do_rra(frame);
+    //do_rra(frame);
     printf("------ Print Rotate --------\n");
     print_the_stack(frame->a, frame->element);
     printf("size is: %d\n", frame->a->size);
+    printf("------ Find Biggest --------\n");
+    long position;
+    position = find_biggest(frame, 'a');
+    printf("the position of the biggest is: %lu\n", position);
+    printf("------ Find Smallest --------\n");
+    position = find_smallest(frame, 'a');
+    printf("the position of the smallest is: %lu\n", position);
     //check_sorted(frame->a, frame->element, frame->a->size);
     free(frame);
     frame = NULL;
