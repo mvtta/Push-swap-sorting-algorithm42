@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/10 17:06:29 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/11 22:06:33 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ char 			**ft_split(char const *s, char c);
 
 void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
-void			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
+void 			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
 void			print_the_stack(t_stack_info *stack, t_stack_link *element);
 int				stack_traverse(t_frame *frame, char id);
@@ -178,7 +178,9 @@ void 			push_swap_error();
 t_frame 		*init_frame(t_frame *frame, char **argv);
 
 /* identity */
-int     		check_sorted(t_stack_info *label, t_stack_link *node, int size);
+int				check_sorted_first(t_frame *frame);
+int				check_sorted_a(t_frame *frame);
+int    			check_sorted_b(t_frame *frame);
 int				qprocess(const char *str);
 
 /* instructions */
@@ -195,6 +197,10 @@ int     do_rra(t_frame *frame);
 int     do_rrb(t_frame *frame);
 int     do_rrr(t_frame *frame);
 
+/* classify */
+
+void classify(t_frame *frame);
+
 /* solutions */
 
 void 	do_solution_1(t_frame *frame);
@@ -203,5 +209,12 @@ void 	do_solution_1(t_frame *frame);
 
 long 	find_biggest(t_frame *frame, char id);
 long 	find_smallest(t_frame *frame, char id);
+long	find_median(t_frame *frame, char id);
 int		find_position(t_frame *frame, int the_one, char id);
+
+/* ingenuity */
+
+void    get_ingenuity(t_frame *frame);
+
 #endif
+

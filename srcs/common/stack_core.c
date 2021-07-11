@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/10 17:09:27 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/11 15:36:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,28 @@ static inline t_stack_link **find_link(t_stack_info *stack, t_stack_link *target
 
 void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s)
 {
+	t_stack_link *new_head_t;
+	t_stack_link *old_head_t;
+
 	if (target->size == 0)
-		stack_append(target, source->head->value);
+	{
+		target->head = stack_append(target, source->head->value);
+		stack_pop_front(source);
+		return;
+	}
+	new_head_s = NULL;
+	new_head_t = NULL;
+	old_head_t = NULL;
+	old_head_t = target->head;
 	new_head_s = source->head->next;
-	new_head_s->next = source->head->next->next;
-	source->head->next = target->head->prev;
-	target->head = source->head;
+	new_head_t = source->head;
+	target->head->prev = new_head_t;
+	new_head_t->next = old_head_t;
 	source->head = new_head_s;
+	target->head = new_head_t;
+	old_head_t->prev = new_head_t;
+	source->size -=1;
+	target->size +=1;
 }
 
 void stack_pop_front(t_stack_info *stack)
@@ -141,7 +156,7 @@ int find_value(t_stack_link *value, int the_one)
 int find_position(t_frame *frame, int the_one, char id)
 {
 	int i;
-	
+
 	i = 0;
 	if (id == 'a')
 		frame->element = frame->a->head;
@@ -150,7 +165,7 @@ int find_position(t_frame *frame, int the_one, char id)
 	while (frame->element)
 	{
 		if (frame->element->value == the_one)
-			return(i);
+			return (i);
 		frame->element = frame->element->next;
 		i += 1;
 	}

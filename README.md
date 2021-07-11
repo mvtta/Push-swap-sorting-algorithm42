@@ -62,6 +62,13 @@ RR  -> RA && RB  == true
 RRA -> last A < first B
 RRB -> last B < first A
 RRR -> RRA && RRB == true || NONE of the conditions are true to restart the cycle
+
+Approach:
+
+1) Split Atack A in half to -> B
+2) Sort A in descending order
+3) Sort B in ascending order
+4) Do PA when BOTH stacks are sorted after queuing misplaced values.
 ```
 
 ###### Illustration 
