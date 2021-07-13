@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/11 16:32:43 by user             ###   ########.fr       */
+/*   Updated: 2021/07/12 16:03:04 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int     check_sorted_a(t_frame *frame)
     int sorted = 0;
     if (frame->a->size == 1)
     {
-        printf("is A sorted!");
         return(SORTED);
     }
     frame->element = frame->a->head;
@@ -51,9 +50,7 @@ int     check_sorted_a(t_frame *frame)
             sorted+=1; 
         frame->element = frame->element->next;
     }
-    printf("SORTED: %d\n", sorted);
-    printf("SIZE: %d\n", frame->a->size);
-    if (sorted == frame->a->size / 2)
+    if (sorted == frame->a->size - 1)
        return(SORTED);
     return(9);
 }
@@ -64,7 +61,6 @@ int     check_sorted_b(t_frame *frame)
     int sorted = 0;
     if (frame->b->size == 1)
     {
-        printf("is b sorted!");
         return(SORTED);
     }
     frame->element = frame->b->head;
@@ -74,7 +70,7 @@ int     check_sorted_b(t_frame *frame)
             sorted+=1; 
         frame->element = frame->element->next;
     }
-    if (sorted == frame->b->size / 2)
+    if (sorted == frame->b->size - 1)
         return(SORTED);
     return(0);
 }

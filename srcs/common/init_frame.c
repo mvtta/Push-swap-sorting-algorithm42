@@ -17,6 +17,7 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame = malloc(sizeof(t_frame));
     if (!frame)
         exit(1);
+        
     frame->rotate = NULL;
     frame->a = NULL;
     frame->b = NULL;
@@ -33,6 +34,9 @@ t_frame *init_frame(t_frame *frame, char **argv)
     SMALL_RROTATE = 0;
     SMALL_FLAG = 0;
     INDEX = 0;
+    frame->do_visualizer = 1;
+    frame->full = 1;
+    frame->instructions_only = 0;
     frame->after_rotate = 0;
     return (frame);
 }

@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/11 22:06:33 by user             ###   ########.fr       */
+/*   Updated: 2021/07/12 13:41:03 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <fcntl.h>
+#include <stdbool.h>
 #include "../../libft/includes/libft.h"
 
 /*
@@ -46,6 +47,9 @@ typedef struct s_frame
 	int					after_rotate;
 	int					counter;
 	int					*save;
+	int					do_visualizer;
+	int					full;
+	int 				instructions_only;
 
 } t_frame;
 
@@ -53,6 +57,8 @@ typedef struct s_frame
 ** Macro-frame
 */
 
+#define TRUE			1
+#define FALSE			0
 #define	SORTED			8
 #define QUARTER			frame->quarter
 #define MEDIAN			frame->median
@@ -65,13 +71,13 @@ typedef struct s_frame
 #define SMALL_ROTATE	frame->small_rotate
 #define SMALL_RROTATE 	frame->small_rrotate
 #define SMALL_FLAG		frame->small_flag
-#define	A
-#define	B
+#define	A				frame->a
+#define	B				frame->b
 #define INDEX			frame->counter
 #define NEW				frame->element->next
 #define NEXT			frame->element->next
 #define A_HEAD			frame->a->head
-#define B_HEAD
+#define B_HEAD			frame->b->head
 
 /*
 ** handy-enumerations
@@ -198,23 +204,29 @@ int     do_rrb(t_frame *frame);
 int     do_rrr(t_frame *frame);
 
 /* classify */
-
-void classify(t_frame *frame);
+void	classify(t_frame *frame);
 
 /* solutions */
-
 void 	do_solution_1(t_frame *frame);
 
 /* finder */
-
 long 	find_biggest(t_frame *frame, char id);
 long 	find_smallest(t_frame *frame, char id);
 long	find_median(t_frame *frame, char id);
 int		find_position(t_frame *frame, int the_one, char id);
 
 /* ingenuity */
-
 void    get_ingenuity(t_frame *frame);
+void	split_stacks(t_frame *frame);
 
+/* verify */
+void    seek_veritas(t_frame *frame);
+
+/* visualize */
+void    visualize(t_frame * frame);
+void    show_stacks(t_frame *frame);
+void    print(t_stack_info *label, t_stack_link *ele, char id, int i);
+void    stop_visualize(t_frame *frame);
+void    clear_screen();
 #endif
 
