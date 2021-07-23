@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:38:46 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/11 22:09:07 by user             ###   ########.fr       */
+/*   Updated: 2021/07/23 14:57:13 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ long    find_median(t_frame *frame, char id)
     
     while(frame->element)
     {
-        if(frame->element->value < frame->biggest &&
+        if(frame->element->value <= frame->biggest &&
          frame->element->value > frame->biggest / 2)
         {
             median = frame->element->value;

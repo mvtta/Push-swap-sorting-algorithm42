@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/12 13:41:03 by user             ###   ########.fr       */
+/*   Updated: 2021/07/23 18:17:39 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ typedef struct s_frame
 	long				three_quarters;
 	long				biggest;
 	long				smallest;
-	int					big_rotate;
-	int					big_rrotate;
-	int					big_flag;
-	int					small_rotate;
-	int					small_rrotate;
 	int					small_flag;
 	int					after_rotate;
 	int					counter;
@@ -50,6 +45,7 @@ typedef struct s_frame
 	int					do_visualizer;
 	int					full;
 	int 				instructions_only;
+	int					parts_size;
 
 } t_frame;
 
@@ -80,7 +76,7 @@ typedef struct s_frame
 #define B_HEAD			frame->b->head
 
 /*
-** handy-enumerations
+** handy-enumerations for operation !sure if im gonna use it tho
 */
 
 #define INSTRUCTIONS "sa sb ss pa pb ra rb rr rra rrb rrr"
@@ -122,6 +118,19 @@ typedef struct s_stack_info
 	struct s_stack_link 	*tail;
 	int						size;
 } t_stack_info;
+
+/*
+** Part 1.2 - Struct for merge aux flags
+*/
+
+typedef struct s_flags
+{
+	int top1_flag;
+	int top2_flag;
+	int bottom1_flag;
+	int bottom2_flag;
+
+} t_flags;
 
 
 /*

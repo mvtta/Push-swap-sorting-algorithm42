@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/11 16:30:25 by user             ###   ########.fr       */
+/*   Updated: 2021/07/23 15:00:17 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,24 @@ int do_rra(t_frame *frame)
     t_stack_link *new_tail;
     t_stack_link *new_head;
 
-    new_tail = frame->a->tail->prev;
+    if(frame->a->size == 1)
+        return(0);
+
+    if (frame->a->tail->prev)
+        new_tail = frame->a->tail->prev;
+    else
+        new_tail = NULL;
     new_head = frame->a->tail;
     new_head->next = frame->a->head;
     frame->a->head = NULL;
     frame->a->head = new_head;
     frame->a->tail = new_tail;
-    frame->a->tail->next = NULL;
+    if (frame->a->tail)
+        frame->a->tail->next = NULL;
     return (0);
 }
+
+/* fix rra */
 
 int do_rrb(t_frame *frame)
 {
@@ -120,7 +129,7 @@ int do_rrb(t_frame *frame)
     frame->b->head = NULL;
     frame->b->head = new_head;
     frame->b->tail = new_tail;
-    frame->b->tail->next = NULL;
+    //frame->b->tail->next = NULL;
     return (0);
 }
 

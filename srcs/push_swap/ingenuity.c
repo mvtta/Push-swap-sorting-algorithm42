@@ -3,35 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ingenuity.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:28:04 by user              #+#    #+#             */
-/*   Updated: 2021/07/12 16:22:33 by user             ###   ########.fr       */
+/*   Updated: 2021/07/23 17:04:13 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 
+static int  above_median(t_frame *frame, int median)
+{
+    frame->element = frame->a->head;
+    int flag = 0;
+
+    while(frame->element)
+    {
+        if(frame->element->value < median)
+            flag +=1;
+        frame->element = frame->element->next;
+    }
+    return(flag);
+}
+
 void split_stacks(t_frame *frame)
 {
     int half;
     long median;
-    //int moves;
 
     frame->element = frame->a->head;
     half = frame->a->size / 2;
     frame->biggest = find_biggest(frame, 'a');
     frame->smallest = find_smallest(frame, 'a');
     median = find_median(frame, 'a');
-    //moves = half;
-    while (check_sorted_a(frame) != SORTED)
+    int flag = above_median(frame, median);
+
+    while (flag > 0 && frame->a->size > 1)
     {
         if (frame->a->head->value < median)
             do_pb(frame);
         else
             do_rra(frame);
+        show_stacks(frame);
     }
-    if (check_sorted_a(frame) == SORTED && check_sorted_b(frame) == SORTED)
+}
+
+/* tagg this for the future
+    printf("    median: %ld\n", median);
+    printf("      flag: %d\n", flag); */
+    
+/*     if (check_sorted_a(frame) == SORTED && check_sorted_b(frame) == SORTED)
     {
         if(frame->b->head->value > frame->a->head->value)
         {
@@ -41,8 +62,7 @@ void split_stacks(t_frame *frame)
             while(frame->b->head)
                 do_pa(frame);
         }
-    }
-}
+    } */
 
 /* This is definitly not optimal, 
 but my fried brain thinks 
@@ -59,13 +79,10 @@ void get_ingenuity(t_frame *frame)
     b_ele = frame->b->head;
     if (a_ele->value > a_ele->next->value)
         do_sa(frame->a);
-    if (b_ele->value < b_ele->next->value)
-        do_sb(frame->b);
     while (check_sorted_a(frame) != SORTED && check_sorted_b(frame) != SORTED)
     {
-        if (a_ele->value < a_ele->next->value)
-            do_sa(frame->a);
-        if (b_ele->value > b_ele->next->value)
-            do_sb(frame->b);
+        solver_a(frame);
+        solver_b(frame);
     }
+    merge(frame);
 }

@@ -38,5 +38,6 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame->full = 1;
     frame->instructions_only = 0;
     frame->after_rotate = 0;
+    frame->parts_size = 0;
     return (frame);
 }
