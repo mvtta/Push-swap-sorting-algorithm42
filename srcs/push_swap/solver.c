@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 17:16:38 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/23 17:38:44 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/07/24 17:20:36 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void partition(t_frame *frame, char stack_id)
         return;
     else
     {
-
+        
     }
 }
 
@@ -36,10 +36,12 @@ solve_recursive(t_frame *frame, char stack_id)
 {
 
 }
+
 solve_a(t_frame *frame, char stack_id)
 {
     solve_recursive(frame, 'a');
 }
+
 solve_b(t_frame *frame, char stack_id)
 {
     solve_recursive(frame,'b');
