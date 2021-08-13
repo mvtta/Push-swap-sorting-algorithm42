@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:19:25 by user              #+#    #+#             */
-/*   Updated: 2021/07/12 14:40:11 by user             ###   ########.fr       */
+/*   Updated: 2021/08/10 13:01:44 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    print(t_stack_info *label, t_stack_link *ele, char id, int i)
     {
         if (id == 'a')
             printf("   %d", ele->value);
-        if (id == 'b')
+        if (id == 'b' && ele)
             printf("            %d\n", ele->value);
     }
     else
@@ -68,15 +68,15 @@ void    visualize(t_frame * frame)
 {
     if(frame->do_visualizer)
     {
-        usleep(100000);
+        //usleep(100000);
         if (frame->full)
         {
-            clear_screen();
+            //clear_screen();
             show_stacks(frame);
         }
         if (frame->instructions_only)
         {
-            clear_screen();
+            //clear_screen();
             /* print operations */
         }
     }

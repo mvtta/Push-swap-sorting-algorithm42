@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   a2i.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:24:00 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/06/28 23:41:57 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/13 14:49:13 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	process(const char *str)
 {
 	int	sign;
 	int	res;
-/* 
-	if(ft_isalpha(*str) == 1)
-         push_swap_error(); */
+	
 	sign = 1;
 	while (checkspace(*str))
 		str++;

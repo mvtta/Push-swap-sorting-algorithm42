@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/27 15:11:25 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/10 15:59:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,28 @@ typedef struct s_frame
 	struct s_stack_link *element;
 
 	char				**argv;
+	int					big_flag;
 	long				quarter;
 	long				median;
+	long				median_b;
 	long				three_quarters;
 	long				biggest;
 	long				smallest;
+	long				small_b;
 	int					small_flag;
 	int					after_rotate;
 	int					counter;
+	int					bigrotate;
 	int					*save;
 	int					do_visualizer;
 	int					full;
+	int					min_run;
+	int					cheaper;
+	int 				distance_a;
+	int 				distance_b;
 	int 				instructions_only;
 	int					parts_size;
+	int					big_b;
 
 } t_frame;
 
@@ -58,9 +67,12 @@ typedef struct s_frame
 #define	SORTED			8
 #define QUARTER			frame->quarter
 #define MEDIAN			frame->median
+#define MEDIANB			frame->median_b
 #define THREE_Q			frame->three_quarters
 #define BIGGEST			frame->biggest
-#define BIG_ROTATE		frame->big_rotate
+#define BIGB			frame->big_b
+#define SMALLB			frame->small_b
+#define BIG_ROTATE		frame->bigrotate
 #define BIG_RROTATE 	frame->big_rrotate
 #define BIG_FLAG		frame->big_flag
 #define SMALLEST		frame->smallest
@@ -237,5 +249,17 @@ void    show_stacks(t_frame *frame);
 void    print(t_stack_info *label, t_stack_link *ele, char id, int i);
 void    stop_visualize(t_frame *frame);
 void    clear_screen();
+
+/* solver */
+void	partition(t_frame *frame, char stack_id);
+void	solve_a(t_frame *frame);
+void	solve_b(t_frame *frame);
+void	do_inverted_pyramid(t_frame *frame, char stack_id);
+int     pyramid_check(t_frame *frame);
+void	do_pyramid(t_frame *frame, char stack_id);
+
+/* merge */
+void merge(t_frame *frame);
+
 #endif
 

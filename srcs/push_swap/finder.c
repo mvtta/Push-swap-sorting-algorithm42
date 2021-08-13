@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finder.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:38:46 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/23 14:57:13 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/10 11:46:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,11 @@ long find_smallest(t_frame *frame, char id)
 
 long    find_median(t_frame *frame, char id)
 {
-    long median;
+    long median = 0;
     
     if (id == 'a')
-        frame->element = frame->a->head;
+        median = BIGGEST / 2;
     else if (id == 'b')
-        frame->element = frame->b->head;
-    
-    while(frame->element)
-    {
-        if(frame->element->value <= frame->biggest &&
-         frame->element->value > frame->biggest / 2)
-        {
-            median = frame->element->value;
-            return(median);
-        }
-        frame->element = frame->element->next;
-    }
-    return(0);
+        median = BIGB / 2;
+    return(median);
 }

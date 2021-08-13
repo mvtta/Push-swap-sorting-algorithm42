@@ -26,18 +26,17 @@ t_frame *init_frame(t_frame *frame, char **argv)
     MEDIAN = 0;
     THREE_Q = 0;
     BIGGEST = 0;
-    BIG_ROTATE = 0;
-    BIG_RROTATE = 0;
     BIG_FLAG = 0;
     SMALLEST = 0;
-    SMALL_ROTATE = 0;
-    SMALL_RROTATE = 0;
     SMALL_FLAG = 0;
     INDEX = 0;
+    frame->small_b = 0;
     frame->do_visualizer = 1;
     frame->full = 1;
     frame->instructions_only = 0;
     frame->after_rotate = 0;
     frame->parts_size = 0;
+    frame->min_run = 0;
+    frame->cheaper = 0;
     return (frame);
 }

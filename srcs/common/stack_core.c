@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/07/12 16:20:45 by user             ###   ########.fr       */
+/*   Updated: 2021/08/09 20:08:08 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_he
 	new_head_t = NULL;
 	old_head_t = NULL;
 	old_head_t = target->head;
-	new_head_s = source->head->next;
+	if (source->size == 1)
+		new_head_s = NULL;
+	if (source->size > 1)
+		new_head_s = source->head->next;
 	new_head_t = source->head;
 	target->head->prev = new_head_t;
 	new_head_t->next = old_head_t;
