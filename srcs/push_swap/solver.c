@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 17:16:38 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/13 14:46:48 by user             ###   ########.fr       */
+/*   Updated: 2021/08/24 12:49:42 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void partition(t_frame *frame, char stack_id)
             do_pb(frame);
         if (frame->a->size <= 3)
             break;
-        else if (check_sorted_a(frame) != SORTED)
+        else if (check_sorted_a(frame)!= SORTED)
             break;
         else
-            do_rra(frame);
+            do_ra(frame);
     }
     visualize(frame);
 }
@@ -64,6 +64,7 @@ void do_pyramid(t_frame *frame, char stack_id)
             do_pb(frame);
         else
             do_ra(frame);
+        exit(0);
     }
 }
 

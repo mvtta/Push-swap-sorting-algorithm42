@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/10 15:59:16 by user             ###   ########.fr       */
+/*   Updated: 2021/08/13 16:02:53 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct s_frame
 #define B_HEAD			frame->b->head
 
 /*
-** handy-enumerations for operation !sure if im gonna use it tho
+** handy-enumerations for operation opti. !sure if im gonna use it tho
 */
 
 #define INSTRUCTIONS "sa sb ss pa pb ra rb rr rra rrb rrr"
@@ -108,6 +108,10 @@ typedef enum e_ins
 	rrr,
 	END_INS
 } t_ins;
+
+/*
+STACK LIB
+*/
 
 /*
 ** Part 0 -	Stack node
@@ -143,7 +147,6 @@ typedef struct s_flags
 	int bottom2_flag;
 
 } t_flags;
-
 
 /*
 ** Funtion ptr aka jump table
@@ -196,13 +199,12 @@ t_stack_info 	*new_stack(void);
 ** 	Part 4 - Printing functions
 */
 
+t_frame 		*init_frame(t_frame *frame, char **argv);
+void 			push_swap_error();
 int				print_stack(int stack, char *str);
 int				print_info(char *str);
-
 int 			error_check(int *array, int array_size, int to_check);
 int				process(const char *str);
-void 			push_swap_error();
-t_frame 		*init_frame(t_frame *frame, char **argv);
 
 /* identity */
 int				check_sorted_first(t_frame *frame);
@@ -229,6 +231,7 @@ void	classify(t_frame *frame);
 
 /* solutions */
 void 	do_solution_1(t_frame *frame);
+void 	do_solution_2(t_frame *frame);
 
 /* finder */
 long 	find_biggest(t_frame *frame, char id);
@@ -251,11 +254,11 @@ void    stop_visualize(t_frame *frame);
 void    clear_screen();
 
 /* solver */
+int     pyramid_check(t_frame *frame);
 void	partition(t_frame *frame, char stack_id);
 void	solve_a(t_frame *frame);
 void	solve_b(t_frame *frame);
 void	do_inverted_pyramid(t_frame *frame, char stack_id);
-int     pyramid_check(t_frame *frame);
 void	do_pyramid(t_frame *frame, char stack_id);
 
 /* merge */

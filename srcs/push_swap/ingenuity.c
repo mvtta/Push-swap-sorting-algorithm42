@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ingenuity.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:28:04 by user              #+#    #+#             */
-/*   Updated: 2021/08/13 14:41:57 by user             ###   ########.fr       */
+/*   Updated: 2021/08/24 12:51:26 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 
-static int above_median(t_frame *frame, int median)
+static int  above_median(t_frame *frame, int median)
 {
     frame->element = frame->a->head;
     int flag = 0;
 
-    while (frame->element)
+    while(frame->element)
     {
-        if (frame->element->value < median)
-            flag += 1;
+        if(frame->element->value < median)
+            flag +=1;
         frame->element = frame->element->next;
     }
-    return (flag);
+    return(flag);
 }
 
 void split_stacks(t_frame *frame)
@@ -45,13 +45,32 @@ void split_stacks(t_frame *frame)
         else
             do_ra(frame);
         show_stacks(frame);
+        if(frame->a->tail->value == frame->biggest)
+            break;
     }
 }
 
 /* tagg this for the future
     printf("    median: %ld\n", median);
     printf("      flag: %d\n", flag); */
+    
+/*     if (check_sorted_a(frame) == SORTED && check_sorted_b(frame) == SORTED)
+    {
+        if(frame->b->head->value > frame->a->head->value)
+        {
+            do_pb(frame);
+            do_sb(frame->b);
+            //do_pa(frame);
+            while(frame->b->head)
+                do_pa(frame);
+        }
+    } */
 
+/* This is definitly not optimal, 
+but my fried brain thinks 
+this is ok for now. 
+@35 i need a better breaking option asap
+update: fixed it */
 
 void get_ingenuity(t_frame *frame)
 {
@@ -60,11 +79,12 @@ void get_ingenuity(t_frame *frame)
 
     a_ele = frame->a->head;
     b_ele = frame->b->head;
-    partition(frame, 'a');
-    solve_a(frame);
-    solve_b(frame);
+    if (a_ele->value > a_ele->next->value)
+        do_sa(frame->a);
+    while (check_sorted_a(frame) != SORTED && check_sorted_b(frame) != SORTED)
+    {
+        solve_b(frame);
+        solve_a(frame);
+    }
     merge(frame);
-    /*     solve_a(frame, 'a');
-    solve_b(frame, 'b');
-    merge(frame); */
 }
