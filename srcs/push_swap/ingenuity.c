@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:28:04 by user              #+#    #+#             */
-/*   Updated: 2021/08/24 12:51:26 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/24 13:02:09 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void split_stacks(t_frame *frame)
         show_stacks(frame);
         if(frame->a->tail->value == frame->biggest)
             break;
+            /* instead of "break" send to solver a */ 
     }
 }
 
