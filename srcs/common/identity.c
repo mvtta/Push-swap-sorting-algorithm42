@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identity.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/13 14:49:51 by user             ###   ########.fr       */
+/*   Updated: 2021/08/24 16:39:12 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int     check_sorted_a(t_frame *frame)
 int     check_sorted_b(t_frame *frame)
 {
     int sorted = 0;
-    if (frame->b->size == 1)
+    if (frame->b->size == 1 || frame->b->size == 0)
         return(SORTED);
     frame->element = frame->b->head;
     while(frame->element->next != NULL)
