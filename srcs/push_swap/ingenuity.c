@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ingenuity.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 17:28:04 by user              #+#    #+#             */
-/*   Updated: 2021/08/24 13:02:09 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/24 19:50:50 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void get_ingenuity(t_frame *frame)
         solve_b(frame);
         solve_a(frame);
     }
+   /*  printf("here") */;
     merge(frame);
 }
