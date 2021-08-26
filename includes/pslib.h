@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/13 16:02:53 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/08/26 16:35:40 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,15 @@ typedef struct s_frame
 #define TRUE			1
 #define FALSE			0
 #define	SORTED			8
-#define QUARTER			frame->quarter
-#define MEDIAN			frame->median
-#define MEDIANB			frame->median_b
-#define THREE_Q			frame->three_quarters
-#define BIGGEST			frame->biggest
-#define BIGB			frame->big_b
-#define SMALLB			frame->small_b
-#define BIG_ROTATE		frame->bigrotate
-#define BIG_RROTATE 	frame->big_rrotate
-#define BIG_FLAG		frame->big_flag
-#define SMALLEST		frame->smallest
-#define SMALL_ROTATE	frame->small_rotate
-#define SMALL_RROTATE 	frame->small_rrotate
-#define SMALL_FLAG		frame->small_flag
 #define	A				frame->a
 #define	B				frame->b
+#define A_HEAD			frame->a->head
+#define B_HEAD			frame->b->head
+#define MEDIANA			frame->median
+#define MEDIANB			frame->median_b
 #define INDEX			frame->counter
 #define NEW				frame->element->next
 #define NEXT			frame->element->next
-#define A_HEAD			frame->a->head
-#define B_HEAD			frame->b->head
 
 /*
 ** handy-enumerations for operation opti. !sure if im gonna use it tho
@@ -149,19 +137,6 @@ typedef struct s_flags
 } t_flags;
 
 /*
-** Funtion ptr aka jump table
-*/
-
-typedef void 	(*t_table)(t_frame *frame);
-
-/*
-** Checker functions
-*/
-
-void 			do_launch(t_frame *frame);
-void 			sort_test(t_frame *frame);
-
-/*
 ** Part 1 -	Libc functions
 */
 
@@ -195,11 +170,10 @@ t_stack_link	*stack_add_front(t_stack_info *stack, int i);
 t_stack_link 	*new_link(t_stack_info *stack, int data);
 t_stack_info 	*new_stack(void);
 
-/*
-** 	Part 4 - Printing functions
-*/
-
+/* init frame */
 t_frame 		*init_frame(t_frame *frame, char **argv);
+
+/* print unit */
 void 			push_swap_error();
 int				print_stack(int stack, char *str);
 int				print_info(char *str);
@@ -213,53 +187,37 @@ int    			check_sorted_b(t_frame *frame);
 int				qprocess(const char *str);
 
 /* instructions */
-
-int     do_sa(t_stack_info *label);
-int     do_sb(t_stack_info *label);
-int     do_ss(t_stack_info *label);
-int    	do_pa(t_frame *frame);
-int 	do_pb(t_frame *frame);
-int 	do_ra(t_frame *frame);
-int     do_rb(t_frame *frame);
-int     do_rr(t_frame *frame);
-int     do_rra(t_frame *frame);
-int     do_rrb(t_frame *frame);
-int     do_rrr(t_frame *frame);
-
-/* classify */
-void	classify(t_frame *frame);
-
-/* solutions */
-void 	do_solution_1(t_frame *frame);
-void 	do_solution_2(t_frame *frame);
-
-/* finder */
-long 	find_biggest(t_frame *frame, char id);
-long 	find_smallest(t_frame *frame, char id);
-long	find_median(t_frame *frame, char id);
-int		find_position(t_frame *frame, int the_one, char id);
-
-/* ingenuity */
-void    get_ingenuity(t_frame *frame);
-void	split_stacks(t_frame *frame);
-
-/* verify */
-void    seek_veritas(t_frame *frame);
-
-/* visualize */
-void    visualize(t_frame * frame);
-void    show_stacks(t_frame *frame);
-void    print(t_stack_info *label, t_stack_link *ele, char id, int i);
-void    stop_visualize(t_frame *frame);
-void    clear_screen();
+int     		do_sa(t_stack_info *label);
+int     		do_sb(t_stack_info *label);
+int     		do_ss(t_stack_info *label);
+int    			do_pa(t_frame *frame);
+int 			do_pb(t_frame *frame);
+int 			do_ra(t_frame *frame);
+int     		do_rb(t_frame *frame);
+int     		do_rr(t_frame *frame);
+int     		do_rra(t_frame *frame);
+int     		do_rrb(t_frame *frame);
+int     		do_rrr(t_frame *frame);
 
 /* solver */
-int     pyramid_check(t_frame *frame);
-void	partition(t_frame *frame, char stack_id);
-void	solve_a(t_frame *frame);
-void	solve_b(t_frame *frame);
-void	do_inverted_pyramid(t_frame *frame, char stack_id);
-void	do_pyramid(t_frame *frame, char stack_id);
+void			solver(t_frame *frame);
+void			algo(t_frame *frame);
+void 			do_solution_1(t_frame *frame);
+void 			do_solution_2(t_frame *frame);
+void 			do_solution_3(t_frame *frame);
+
+/* finder */
+long 			find_biggest(t_frame *frame, char id);
+long 			find_smallest(t_frame *frame, char id);
+long			find_median(t_frame *frame, char id);
+int				find_position(t_frame *frame, int the_one, char id);
+
+/* visualize */
+void    		visualize(t_frame * frame);
+void    		show_stacks(t_frame *frame);
+void    		print(t_stack_info *label, t_stack_link *ele, char id, int i);
+void    		stop_visualize(t_frame *frame);
+void    		clear_screen();
 
 /* merge */
 void merge(t_frame *frame);

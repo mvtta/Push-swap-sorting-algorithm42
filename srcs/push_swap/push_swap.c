@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/08/10 16:02:56 by user             ###   ########.fr       */
+/*   Updated: 2021/08/26 15:36:47 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int main(int argc, char **argv)
         error_check(temp, INDEX, frame->element->value);
         frame->element = frame->element->next;
         i++;
-    }  
-    classify(frame);
-    show_stacks(frame);
+    }
+    solver(frame);
     free(frame);
-    frame = NULL;
     return (0);
 }

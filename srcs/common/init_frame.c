@@ -22,13 +22,6 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame->a = NULL;
     frame->b = NULL;
     frame->argv = argv;
-    QUARTER = 0;
-    MEDIAN = 0;
-    THREE_Q = 0;
-    BIGGEST = 0;
-    BIG_FLAG = 0;
-    SMALLEST = 0;
-    SMALL_FLAG = 0;
     INDEX = 0;
     frame->small_b = 0;
     frame->do_visualizer = 1;
@@ -40,3 +33,5 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame->cheaper = 0;
     return (frame);
 }
+
+t_frame *fill_frame
