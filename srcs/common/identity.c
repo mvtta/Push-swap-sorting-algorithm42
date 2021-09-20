@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identity.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/24 16:39:12 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/09/17 19:15:56 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,16 @@ int     check_sorted_first(t_frame *frame)
 {
     int sorted = 0;
     if (frame->a->size == 1)
-    {
-        printf("is sorted, only one value: exit");
         exit(SORTED);
-    }
     frame->element = frame->a->head;
     while(frame->element)
     {
         if(frame->element->value < frame->element->next->value)
-            sorted+=1; 
+            sorted++; 
         frame->element = frame->element->next;
     }
     if (sorted == frame->a->size - 1)
-    {
-        printf("is sorted: exit");
         exit(SORTED);
-    }
     return(0);
 }
 
@@ -42,15 +36,17 @@ int     check_sorted_a(t_frame *frame)
     if (frame->a->size == 1)
         return(SORTED);
     frame->element = frame->a->head;
-    while(frame->element->next != NULL)
+    while(frame->element)
     {
         if(frame->element->value < frame->element->next->value)
-            sorted+=1; 
+            sorted++; 
         frame->element = frame->element->next;
+        if(frame->element == frame->a->tail)
+            break;
     }
-    if (sorted == frame->a->size - 1)
-       return(SORTED);
-    return(9);
+    if(sorted == frame->a->size - 1)
+        return(SORTED);
+    return(0);
 }
 
 int     check_sorted_b(t_frame *frame)

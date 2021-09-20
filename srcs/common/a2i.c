@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 17:24:00 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/13 14:49:13 by user             ###   ########.fr       */
+/*   Updated: 2021/09/17 15:50:29 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ int	process(const char *str)
 			sign = -1;
 		str++;
 	}
+	if(*str < '0' || *str > '9')
+		push_swap_error();
 	res = 0;
 	while (checkdigit(*str))
 		res = res * 10 + (*(str++) - 48);
+	if(res > 2147483647 || res <= -2147483648)
+		push_swap_error();
 	return (res * sign);
 }

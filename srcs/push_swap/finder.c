@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:38:46 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/26 13:44:58 by user             ###   ########.fr       */
+/*   Updated: 2021/09/13 14:58:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ long find_median(t_frame *frame, char id)
     long median = 0;
 
     if (id == 'a')
-        median = BIGGEST - SMALLEST / frame->a->size;
+        median = BIGA - SMALLA / frame->a->size;
     else if (id == 'b')
         median = BIGB - SMALLB / frame->b->size;;
 
-    printf("BIG: %ld\n", BIGGEST);
+    printf("BIG: %ld\n", BIGA);
     printf("median: %ld\n", median);
-    printf("SMALLB: %ld\n", SMALLEST);
+    printf("SMALLB: %ld\n", SMALLA);
     printf("frame->a->size: %d\n", frame->a->size);
     return (median);
 }

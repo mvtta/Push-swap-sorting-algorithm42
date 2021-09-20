@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 09:19:25 by user              #+#    #+#             */
-/*   Updated: 2021/08/10 13:01:44 by user             ###   ########.fr       */
+/*   Updated: 2021/09/13 15:02:22 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,6 @@ void    visualize(t_frame * frame)
         {
             //clear_screen();
             show_stacks(frame);
-        }
-        if (frame->instructions_only)
-        {
-            //clear_screen();
-            /* print operations */
         }
     }
 }  

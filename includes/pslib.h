@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/26 16:35:40 by user             ###   ########.fr       */
+/*   Updated: 2021/09/17 19:34:59 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,31 @@ typedef struct s_frame
 	struct s_stack_info *rotate;
 	struct s_stack_link *element;
 
-	char				**argv;
-	int					big_flag;
-	long				quarter;
-	long				median;
-	long				median_b;
-	long				three_quarters;
-	long				biggest;
-	long				smallest;
-	long				small_b;
-	int					small_flag;
-	int					after_rotate;
-	int					counter;
-	int					bigrotate;
 	int					*save;
+	char				**argv;
+	int 				*guide;
+	int 				guide_size;
+	int					to_push;
+	long				big_a;
+	long				big_b;
+	long				quarter;
+	long				median_a;
+	long				median_b;
+	long				small_a;
+	long				small_b;
+	int					counter;
 	int					do_visualizer;
 	int					full;
 	int					min_run;
 	int					cheaper;
 	int 				distance_a;
 	int 				distance_b;
-	int 				instructions_only;
-	int					parts_size;
-	int					big_b;
+	int					lis;
+	int					lis_start;
+	int					lis_size;
 
 } t_frame;
+
 
 /*
 ** Macro-frame
@@ -69,11 +69,17 @@ typedef struct s_frame
 #define	B				frame->b
 #define A_HEAD			frame->a->head
 #define B_HEAD			frame->b->head
-#define MEDIANA			frame->median
+#define MEDIANA			frame->median_a
 #define MEDIANB			frame->median_b
 #define INDEX			frame->counter
 #define NEW				frame->element->next
 #define NEXT			frame->element->next
+#define BIGA			frame->big_a
+#define BIGB			frame->big_b
+#define SMALLA			frame->small_a
+#define SMALLB			frame->small_b
+#define PUSH			frame->to_push
+
 
 /*
 ** handy-enumerations for operation opti. !sure if im gonna use it tho
@@ -160,7 +166,7 @@ void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
 void 			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
-void			print_the_stack(t_stack_info *stack, t_stack_link *element);
+void			print_the_stack(t_frame *frame);
 int				stack_traverse(t_frame *frame, char id);
 int 			stack_top_peek(t_stack_info *stack);
 int 			stack_tail_peek(t_stack_info *stack);

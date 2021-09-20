@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/08/09 20:08:08 by user             ###   ########.fr       */
+/*   Updated: 2021/09/17 19:43:17 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_he
 	source->head = new_head_s;
 	target->head = new_head_t;
 	old_head_t->prev = new_head_t;
-	source->size -=1;
-	target->size +=1;
+	source->size -= 1;
+	target->size += 1;
 }
 
 void stack_pop_front(t_stack_info *stack)
@@ -177,17 +177,23 @@ int find_position(t_frame *frame, int the_one, char id)
 	return (i);
 }
 
-void print_the_stack(t_stack_info *stack, t_stack_link *element)
+void print_the_stack(t_frame *frame)
 {
-	element = stack->head;
-	/* 	printf("stack head:  %d\n", stack->head->value);
-	printf("stack head->next:  %d\n", stack->head->next->value); */
-	while (element)
+	frame->element = frame->a->head;
+	int i = frame->a->size;
+	printf("size: %d\n", frame->a->size);
+	while (i > 0)
 	{
-		printf("element value:%d\n", element->value);
-		printf("next ptr:%p\n", element->next);
-		printf("current node ptr:%p\n\n", element);
-		element = element->next;
+		printf("%d - %p - %p\n", frame->element->value, frame->element, frame->element->next);
+		/* 		printf("next ptr:%p\n", element->next);
+		printf("current node ptr:%p\n\n", element); */
+		frame->element = frame->element->next;
+		if (frame->element == frame->a->tail)
+		{
+			printf("%d - %p - %p\n", frame->element->value, frame->element, frame->element->next);
+			break;
+		}
+		i--;
 	}
 }
 
