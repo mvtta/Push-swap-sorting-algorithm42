@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/17 19:43:17 by user             ###   ########.fr       */
+/*   Updated: 2021/09/20 16:04:43 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ t_stack_link *stack_append(t_stack_info *stack, int i)
 
 	if (stack->head == NULL)
 	{
-		//printf("here1\n");
 		to_insert = new_link(stack, i);
 		stack->head = to_insert;
 		stack->tail = to_insert;
@@ -130,11 +129,11 @@ t_stack_link *stack_append(t_stack_info *stack, int i)
 	}
 	else
 	{
-		//printf("here2\n");
 		to_insert = new_link(stack, i);
 		to_insert->prev = stack->tail;
 		stack->tail->next = to_insert;
 		stack->tail = to_insert;
+		stack->tail->prev = to_insert->prev;
 	}
 	return (to_insert);
 }

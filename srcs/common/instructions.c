@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:11:10 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/20 13:45:55 by user             ###   ########.fr       */
+/*   Updated: 2021/09/20 16:22:18 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,14 @@ int do_rra(t_frame *frame)
     t_stack_link *new_tail;
     t_stack_link *new_head;
 
-    if(frame->a->size == 1)
-        return(0);
-
-    if (frame->a->tail->prev)
+    if (frame->a->size == 1)
+        return (0);
+    
+    if (frame->a->tail)
         new_tail = frame->a->tail->prev;
     else
         new_tail = NULL;
+    new_tail = frame->a->tail->prev;
     new_head = frame->a->tail;
     new_head->next = frame->a->head;
     frame->a->head = new_head;
