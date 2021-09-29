@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 16:14:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/20 16:04:43 by user             ###   ########.fr       */
+/*   Updated: 2021/09/29 17:00:46 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static inline t_stack_link **find_link(t_stack_info *stack, t_stack_link *target
 
 	while ((*p) && (*p) != target)
 		p = &(*p)->next;
-	return p;
+	return (p);
 }
 
 void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s)
@@ -58,6 +58,7 @@ void stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_he
 	{
 		target->head = stack_append(target, source->head->value);
 		stack_pop_front(source);
+		target->head->next = NULL;
 		return;
 	}
 	new_head_s = NULL;
@@ -84,7 +85,7 @@ void stack_pop_front(t_stack_info *stack)
 
 	p = stack->head;
 	stack->head = stack->head->next;
-	free(p);
+	p = NULL;
 	stack->size--;
 }
 
@@ -154,7 +155,10 @@ int find_value(t_stack_link *value, int the_one)
 {
 	while (value->value != the_one)
 		value = value->next;
-	return (value->value);
+	if(value->value == the_one)
+		return (value->value);
+	else 
+		return(-33); 
 }
 
 int find_position(t_frame *frame, int the_one, char id)
@@ -176,22 +180,30 @@ int find_position(t_frame *frame, int the_one, char id)
 	return (i);
 }
 
-void print_the_stack(t_frame *frame)
+void print_the_stack(t_frame *frame, char id)
 {
-	frame->element = frame->a->head;
-	int i = frame->a->size;
-	printf("size: %d\n", frame->a->size);
-	while (i > 0)
+	int i = 0;
+	if (id == 'a')
 	{
-		printf("%d - %p - %p\n", frame->element->value, frame->element, frame->element->next);
-		/* 		printf("next ptr:%p\n", element->next);
-		printf("current node ptr:%p\n\n", element); */
-		frame->element = frame->element->next;
-		if (frame->element == frame->a->tail)
+		frame->element = frame->a->head;
+		i = frame->a->size;
+
+	}
+	if (id == 'b')
+	{
+		frame->element = frame->b->head;
+		i = frame->b->size;
+	}
+	while (i != 0)
+	{
+		/* printf("%d - %p - %p\n", frame->element->value, frame->element, frame->element->next); */
+		printf("%d\n",frame->element->value);
+/* 		if (frame->element == frame->a->tail)
 		{
 			printf("%d - %p - %p\n", frame->element->value, frame->element, frame->element->next);
 			break;
-		}
+		} */
+		frame->element = frame->element->next;
 		i--;
 	}
 }

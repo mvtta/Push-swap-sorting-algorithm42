@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:38:46 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/13 14:58:46 by user             ###   ########.fr       */
+/*   Updated: 2021/09/27 15:30:35 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,35 @@ long find_smallest(t_frame *frame, char id)
     return (min);
 }
 
-long find_median(t_frame *frame, char id)
+long find_median(t_frame *frame, char id, long median)
 {
-    long median = 0;
-
+    int has = 0;
     if (id == 'a')
-        median = BIGA - SMALLA / frame->a->size;
-    else if (id == 'b')
-        median = BIGB - SMALLB / frame->b->size;;
+        frame->element = frame->a->head;
+    if (id == 'b')
+        frame->element = frame->b->head;
+    while(frame->element)
+    {
+        if(frame->element->value < median)
+            has += 1;
+        frame->element = frame->element->next;
+    }
+    return (has);
+}
 
-    printf("BIG: %ld\n", BIGA);
-    printf("median: %ld\n", median);
-    printf("SMALLB: %ld\n", SMALLA);
-    printf("frame->a->size: %d\n", frame->a->size);
-    return (median);
+int find_next(t_frame *frame, char id, int flag)
+{
+    int i = 0;
+    if (id == 'a')
+        frame->element = frame->a->head;
+    if (id == 'b')
+        frame->element = frame->b->head;
+    while(frame->element)
+    {
+        if(frame->element->value <= flag)
+            return (i);
+        frame->element = frame->element->next;
+        i++;
+    }
+    return (-1);
 }

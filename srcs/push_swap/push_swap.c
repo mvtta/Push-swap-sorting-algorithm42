@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/09/18 12:02:45 by user             ###   ########.fr       */
+/*   Updated: 2021/09/22 15:32:14 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main(int argc, char **argv)
     if (check_sorted_a(frame) == SORTED)
         exit(-1);
     solver(frame);
-    //print_the_stack(frame);
     free(frame);
     return (0);
 }

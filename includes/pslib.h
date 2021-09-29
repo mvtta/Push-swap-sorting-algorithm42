@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/17 19:34:59 by user             ###   ########.fr       */
+/*   Updated: 2021/09/27 14:15:24 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct s_frame
 	int					*save;
 	char				**argv;
 	int 				*guide;
+	int 				*guide_flags;
 	int 				guide_size;
+	int 				flags_size;
 	int					to_push;
 	long				big_a;
 	long				big_b;
@@ -166,7 +168,7 @@ void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
 void 			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
-void			print_the_stack(t_frame *frame);
+void			print_the_stack(t_frame *frame, char id);
 int				stack_traverse(t_frame *frame, char id);
 int 			stack_top_peek(t_stack_info *stack);
 int 			stack_tail_peek(t_stack_info *stack);
@@ -212,11 +214,16 @@ void 			do_solution_1(t_frame *frame);
 void 			do_solution_2(t_frame *frame);
 void 			do_solution_3(t_frame *frame);
 
+/* make */
+void 			make_guide_flags(t_frame *frame);
+void			make_guide(t_frame *frame);
+
 /* finder */
 long 			find_biggest(t_frame *frame, char id);
 long 			find_smallest(t_frame *frame, char id);
-long			find_median(t_frame *frame, char id);
+long			find_median(t_frame *frame, char id, long median);
 int				find_position(t_frame *frame, int the_one, char id);
+int				find_next(t_frame *frame, char id, int flag);
 
 /* visualize */
 void    		visualize(t_frame * frame);

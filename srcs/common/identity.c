@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 14:58:15 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/17 19:15:56 by user             ###   ########.fr       */
+/*   Updated: 2021/09/28 15:06:58 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,6 @@ int     check_sorted_b(t_frame *frame)
     while(frame->element->next != NULL)
     {
         if(frame->element->value < frame->element->next->value)
-            sorted+=1; 
-        frame->element = frame->element->next;
-    }
-    if (sorted == frame->b->size - 1)
-        return(SORTED);
-    return(0);
-}
-
-int     pyramid_check(t_frame *frame)
-{
-    int sorted = 0;
-    if (frame->b->size == 1)
-    {
-        return(SORTED);
-    }
-    frame->element = frame->b->head;
-    while(frame->element->next != NULL)
-    {
-        if(frame->element->value > frame->element->next->value)
             sorted+=1; 
         frame->element = frame->element->next;
     }
