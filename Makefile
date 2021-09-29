@@ -5,7 +5,7 @@
 # Makefile by mvaldeta (tired of !understanting makefiles)
 # Version 0.0 made with minor changes from @fletcher97 Version: 1.2.1
 
-# The goal is to itearte this Makefile with the help from my friends @fletcher97 
+# The goal is to iterate this Makefile with the help from my friends @fletcher97 
 # & @DimitriDaSilva into my own version.
 
 # changed ${AT}rm -r ${OBJ_ROOT} on clean targets to delete tmp folders
@@ -240,7 +240,7 @@ $(src), \
 $(subst ${SRC_ROOT}, ${DEP_ROOT}, $(src:.c=.d)))))
 
 ################################################################################
-# Includes
+# Includes 
 ################################################################################
 -include ${DEPS}
 
