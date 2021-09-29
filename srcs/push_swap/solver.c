@@ -6,16 +6,11 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:17:01 by user              #+#    #+#             */
-/*   Updated: 2021/09/20 12:59:57 by user             ###   ########.fr       */
+/*   Updated: 2021/09/29 17:01:07 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
-
-/* void algo(t_frame *frame)
-{
-
-} */
 
 void swap(int *xp, int *yp)
 {
@@ -35,7 +30,6 @@ void make_guide(t_frame *frame)
     while (i < frame->a->size)
     {
         frame->guide[i] = frame->element->value;
-        //printf("GUIDE: %d\n", frame->guide[i]);
         frame->element = frame->element->next;
         i++;
     }
@@ -54,11 +48,45 @@ void make_guide(t_frame *frame)
         }
     }
     i = 0;
-    while (i < frame->a->size)
+    /*     while (i < frame->a->size)
     {
-        //printf("GUIDE: %d\n", frame->guide[i]);
+        printf("GUIDE: %d\n", frame->guide[i]);
         i++;
     }
+    exit(0); */
+}
+
+void make_guide_flags(t_frame *frame)
+{
+    int i = 0;
+    int j = 0;
+    int size = 0;
+    int chunk = 0;
+    if (frame->guide_size <= 100)
+        chunk = 10;
+    if (frame->guide_size > 100)
+        chunk = 15;
+    size = frame->a->size / chunk;
+    frame->flags_size = size;
+    frame->guide_flags = malloc(size * sizeof(int));
+    if (frame->guide_flags == NULL)
+        return;
+    while (i < frame->a->size && j < frame->a->size / chunk)
+    {
+        if (i % chunk == 0)
+        {
+            frame->guide_flags[j] = frame->guide[i];
+            j += 1;
+        }
+        i += 1;
+    }
+    /*     j = 0;
+    while (j < size)
+    {
+        printf("FLAGS: %d\n", frame->guide_flags[j]);
+        j++;
+    }
+    exit(0); */
 }
 
 void do_solution_1(t_frame *frame)
@@ -71,19 +99,17 @@ void do_solution_1(t_frame *frame)
     }
     if (frame->a->size == 3)
     {
-            if (frame->a->head->value > frame->a->head->next->value && frame->a->head->next->value < frame->a->tail->value)
-                do_ra(frame);
-            if (frame->a->head->value > frame->a->head->next->value)
-                do_sa(frame->a);
-            if (frame->a->tail->value < frame->a->head->value)
-                do_rra(frame);
+        if (frame->a->head->value > frame->a->head->next->value && frame->a->head->next->value < frame->a->tail->value)
+            do_ra(frame);
+        if (frame->a->head->value > frame->a->head->next->value)
+            do_sa(frame->a);
+        if (frame->a->tail->value < frame->a->head->value)
+            do_rra(frame);
         return;
     }
     if (frame->a->size > 3)
     {
         MEDIANA = frame->guide[frame->guide_size / 2];
-        /*         printf("MEDIANA: %ld\n", MEDIANA);
-        exit(0); */
         int index = frame->guide_size / 2;
         while (index > 0)
         {
@@ -108,15 +134,15 @@ void do_solution_1(t_frame *frame)
         }
         if (frame->a->size == 3)
         {
-                if (frame->a->tail->value < frame->a->head->value)
-                    do_ra(frame);
-                if (frame->a->head->value > frame->a->head->next->value)
-                    do_sa(frame->a);
-                if(frame->a->tail->value < frame->a->head->next->value)
-                {
-                    do_rra(frame);
-                    do_sa(frame->a);
-                } 
+            if (frame->a->tail->value < frame->a->head->value)
+                do_ra(frame);
+            if (frame->a->head->value > frame->a->head->next->value)
+                do_sa(frame->a);
+            if (frame->a->tail->value < frame->a->head->next->value)
+            {
+                do_rra(frame);
+                do_sa(frame->a);
+            }
         }
         while (frame->b)
         {
@@ -132,12 +158,6 @@ void do_solution_1(t_frame *frame)
 }
 
 void do_solution_2(t_frame *frame)
-{
-    do_solution_3(frame);
-        return;
-}
-
-void do_solution_3(t_frame *frame)
 {
     int i = frame->guide_size - 1;
     while (frame->a->size != 0)
@@ -160,19 +180,84 @@ void do_solution_3(t_frame *frame)
             PUSH = -1;
         }
     }
+    return;
+}
+
+void do_solution_3(t_frame *frame)
+{
+    int chunk = 0;
+    if (frame->guide_size <= 100)
+        chunk = 10;
+    if (frame->guide_size > 100)
+        chunk = 15;
+    make_guide_flags(frame);
+    int j = 1;
+    int rotate = 0;
+    while (j < frame->flags_size)
+    {
+        while (find_median(frame, 'a', frame->guide_flags[j]) != 0)
+        {
+            rotate = find_next(frame, 'a', frame->guide_flags[j]);
+            while (rotate > 0)
+            {
+                do_ra(frame);
+                rotate -= 1;
+            }
+            if (frame->a->head->value <= frame->guide_flags[j])
+                do_pb(frame);
+        }
+        j += 1;
+    }
+    while (frame->a->size != 0)
+        do_pb(frame);
+    /*   ~~~~~~~~~ */
+    /*  OPS : 500  */
+    /*   ~~~~~~~~~ */
+    int i = frame->guide_size - 1;
+    PUSH = find_position(frame, frame->guide[i], 'b');
+    while (i > 0)
+    {
+        while (PUSH > 0)
+        {
+            do_rb(frame);
+            PUSH -= 1;
+        }
+        if (frame->b->head->value == frame->guide[i])
+        {
+            do_pa(frame);
+            i -= 1;
+            PUSH = find_position(frame, frame->guide[i], 'b');
+            while (PUSH > chunk)
+            {
+                do_rrb(frame);
+                PUSH = find_position(frame, frame->guide[i], 'b');
+                if (PUSH > frame->b->size)
+                {
+                    PUSH = 0;
+                    break;
+                }
+            }
+        }
+    }
+    do_pa(frame);
+    return;
+}
+
+void do_solution_4(t_frame *frame)
+{
+    do_solution_3(frame);
 }
 
 void solver(t_frame *frame)
 {
     make_guide(frame);
-    //do_solution_3(frame);
-    //print_the_stack(frame->b, frame->element);
-
     if (frame->a->size <= 5)
         do_solution_1(frame);
-    else if (frame->a->size <= 100)
+    else if (frame->a->size <= 60)
         do_solution_2(frame);
-    else
+    else if (frame->a->size <= 100)
         do_solution_3(frame);
-    //print_the_stack(frame);
+    else
+        do_solution_4(frame);
+    //print_the_stack(frame, 'a');
 }

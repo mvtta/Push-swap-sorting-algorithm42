@@ -6,7 +6,7 @@
 /*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/09/18 12:00:54 by user             ###   ########.fr       */
+/*   Updated: 2021/09/22 15:34:20 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void push_swap_error()
 {
     write(2, "Error\n", 6);
-    //free(frame);
     exit(-1);
 }
 
@@ -26,7 +25,6 @@ int error_check(int *array, int array_size, int to_check)
     
     if(!array)
         return(0);
-    //printf("to check:%d\n", to_check);
     if(array_size == 1)
         return(0);
     while(i < array_size + 1)

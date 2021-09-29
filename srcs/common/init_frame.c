@@ -22,18 +22,5 @@ t_frame *init_frame(t_frame *frame, char **argv)
     frame->b = NULL;
     frame->argv = argv;
     INDEX = 0;
-    frame->small_b = 0;
-    frame->do_visualizer = 1;
-    frame->full = 1;
-    frame->min_run = 0;
-    frame->cheaper = 0;
-    frame->lis = 0;
-    frame->lis_start = 0;
-    frame->lis_size = 0;
     return (frame);
 }
-
-/* t_frame *fill_frame(t_frame *frame)
-{
-
-} */
