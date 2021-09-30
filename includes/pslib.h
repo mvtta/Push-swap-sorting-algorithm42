@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/27 14:15:24 by user             ###   ########.fr       */
+/*   Updated: 2021/09/30 18:05:35 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_frame
 	int 				guide_size;
 	int 				flags_size;
 	int					to_push;
+	int					chunk;
 	long				big_a;
 	long				big_b;
 	long				quarter;
@@ -81,6 +82,7 @@ typedef struct s_frame
 #define SMALLA			frame->small_a
 #define SMALLB			frame->small_b
 #define PUSH			frame->to_push
+#define CHUNK			frame->chunk
 
 
 /*
@@ -185,7 +187,7 @@ t_frame 		*init_frame(t_frame *frame, char **argv);
 void 			push_swap_error();
 int				print_stack(int stack, char *str);
 int				print_info(char *str);
-int 			error_check(int *array, int array_size, int to_check);
+int 			error_check(int *array, int array_size, long to_check);
 int				process(const char *str);
 
 /* identity */
@@ -236,4 +238,3 @@ void    		clear_screen();
 void merge(t_frame *frame);
 
 #endif
-

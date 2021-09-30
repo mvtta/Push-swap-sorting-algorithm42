@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:17:01 by user              #+#    #+#             */
-/*   Updated: 2021/09/29 17:01:07 by user             ###   ########.fr       */
+/*   Updated: 2021/09/30 18:09:21 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,18 @@ void make_guide_flags(t_frame *frame)
     int i = 0;
     int j = 0;
     int size = 0;
-    int chunk = 0;
     if (frame->guide_size <= 100)
-        chunk = 10;
+        CHUNK = 10;
     if (frame->guide_size > 100)
-        chunk = 15;
-    size = frame->a->size / chunk;
+        CHUNK = 25;
+    size = frame->a->size / CHUNK;
     frame->flags_size = size;
     frame->guide_flags = malloc(size * sizeof(int));
     if (frame->guide_flags == NULL)
         return;
-    while (i < frame->a->size && j < frame->a->size / chunk)
+    while (i < frame->a->size && j < frame->a->size / CHUNK)
     {
-        if (i % chunk == 0)
+        if (i % CHUNK == 0)
         {
             frame->guide_flags[j] = frame->guide[i];
             j += 1;
@@ -185,11 +184,6 @@ void do_solution_2(t_frame *frame)
 
 void do_solution_3(t_frame *frame)
 {
-    int chunk = 0;
-    if (frame->guide_size <= 100)
-        chunk = 10;
-    if (frame->guide_size > 100)
-        chunk = 15;
     make_guide_flags(frame);
     int j = 1;
     int rotate = 0;
@@ -210,9 +204,11 @@ void do_solution_3(t_frame *frame)
     }
     while (frame->a->size != 0)
         do_pb(frame);
+
     /*   ~~~~~~~~~ */
     /*  OPS : 500  */
     /*   ~~~~~~~~~ */
+
     int i = frame->guide_size - 1;
     PUSH = find_position(frame, frame->guide[i], 'b');
     while (i > 0)
@@ -227,7 +223,7 @@ void do_solution_3(t_frame *frame)
             do_pa(frame);
             i -= 1;
             PUSH = find_position(frame, frame->guide[i], 'b');
-            while (PUSH > chunk)
+            while (PUSH > CHUNK)
             {
                 do_rrb(frame);
                 PUSH = find_position(frame, frame->guide[i], 'b');
@@ -260,4 +256,8 @@ void solver(t_frame *frame)
     else
         do_solution_4(frame);
     //print_the_stack(frame, 'a');
+    /*     if(check_sorted_a(frame))
+        printf("OK");
+    else
+        printf("KO"); */
 }

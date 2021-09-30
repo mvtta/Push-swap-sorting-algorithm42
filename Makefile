@@ -17,8 +17,8 @@
 ################################################################################
 
 NAME1			= push_swap
-NAME2			= checker
-NAMES			= ${NAME1} ${NAME2}
+#NAME2			= checker
+NAMES			= ${NAME1} #${NAME2}
 #AR				= ar rcs
 
 ################################################################################
@@ -139,11 +139,12 @@ ${NAME1}: ${LIBFT} ${OBJS_MAIN}
 	${AT}printf "\033[38;5;46m[CREATING ${NAME1}]\033[0m\n" ${BLOCK}
 	${AT}mkdir -p ${BIN_ROOT}
 	${AT}${CC} ${CFLAGS} ${INCS} ${OBJS_MAIN} ${LIBS} -o ${BIN_ROOT}$@
-
-${NAME2}: ${LIBFT} ${OBJS_CHECKER}
-	${AT}printf "\033[38;5;46m[CREATING ${NAME2}]\033[0m\n" ${BLOCK}
-	${AT}mkdir -p ${BIN_ROOT}
-	${AT}${CC} ${CFLAGS} ${INCS} ${OBJS_CHECKER} ${LIBS} -o ${BIN_ROOT}$@
+################################################################################
+#${NAME2}: ${LIBFT} ${OBJS_CHECKER}
+#	${AT}printf "\033[38;5;46m[CREATING ${NAME2}]\033[0m\n" ${BLOCK}
+#	${AT}mkdir -p ${BIN_ROOT}
+#	${AT}${CC} ${CFLAGS} ${INCS} ${OBJS_CHECKER} ${LIBS} -o ${BIN_ROOT}$@
+################################################################################
 
 ${LIBFT}:
 	${AT}make -C ${LIBFT_ROOT} ${BLOCK}
