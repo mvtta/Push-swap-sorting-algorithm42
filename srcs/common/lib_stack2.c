@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_unit.c                                       :+:      :+:    :+:   */
+/*   lib_stack2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/26 19:25:46 by user              #+#    #+#             */
-/*   Updated: 2021/06/25 22:36:32 by mvaldeta         ###   ########.fr       */
+/*   Created: 2021/10/02 15:40:07 by mvaldeta          #+#    #+#             */
+/*   Updated: 2021/10/02 16:03:17 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
-#include "../../libft/includes/libft.h"
-#include <stdio.h>
 
-/* \E[H\E[2J = escape sequance to clear window */
-
-int    print_stack(int stack, char *str)
+void	stack_pop_back(t_stack_info *stack)
 {
-    printf(" %d\n", stack);
-    printf("%s\n", "----");
-    printf("%s\n", str);
-    return(0);  
+	t_stack_link	*to_del;
 
+	to_del = stack->tail;
+	stack->tail = stack->tail->prev;
+	free(to_del);
+	printf("new last : %p\n", stack->tail);
+	stack->size--;
 }
-int    print_info(char *str)
+
+int	stack_top_peek(t_stack_info *stack)
 {
-    printf("%s\n", "------       ------");
-    printf("%s      stack b  ", str);
-    return(0);  
+	return (stack->head->value);
+}
+
+int	stack_tail_peek(t_stack_info *stack)
+{
+	return (stack->tail->value);
 }

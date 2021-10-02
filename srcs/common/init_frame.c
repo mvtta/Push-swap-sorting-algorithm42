@@ -12,15 +12,14 @@
 
 #include "../../includes/pslib.h"
 
-t_frame *init_frame(t_frame *frame, char **argv)
+t_frame	*init_frame(t_frame *frame, char **argv)
 {
-    frame = malloc(sizeof(t_frame));
-    if (!frame)
-        exit(1);
-
-    frame->a = NULL;
-    frame->b = NULL;
-    frame->argv = argv;
-    INDEX = 0;
-    return (frame);
+	frame = malloc(sizeof(t_frame));
+	if (!frame)
+		exit(1);
+	frame->a = NULL;
+	frame->b = NULL;
+	frame->argv = argv;
+	INDEX = 0;
+	return (frame);
 }

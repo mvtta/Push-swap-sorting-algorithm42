@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/09/30 18:05:35 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/02 16:26:23 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_frame
 	int					lis;
 	int					lis_start;
 	int					lis_size;
+	int					i;
+	int					j;
 
 } t_frame;
 
@@ -168,7 +170,7 @@ char 			**ft_split(char const *s, char c);
 
 void 			stack_pop_front(t_stack_info *stack);
 void 			stack_pop_back(t_stack_info *stack);
-void 			stack_push(t_stack_info *source, t_stack_info *target, t_stack_link *new_head_s);
+void			stack_push(t_stack_info *src, t_stack_info *target, t_stack_link *new);
 void 			stack_key_pop_push(t_stack_info *stack, t_stack_link *target);
 void			print_the_stack(t_frame *frame, char id);
 int				stack_traverse(t_frame *frame, char id);

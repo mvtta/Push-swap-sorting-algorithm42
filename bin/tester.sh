@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    tester.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+         #
+#    By: lmartins <lmartins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/04 16:53:09 by lfrasson          #+#    #+#              #
-#    Updated: 2021/09/30 17:57:56 by mvaldeta         ###   ########.fr        #
+#    Updated: 2021/09/10 08:48:44 by lmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-NUM_TESTS=50
+NUM_TESTS=100
 PUSH_SWAP=./push_swap
 CKER=1
 RET_CKER="is not working"

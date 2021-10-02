@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_management.c                                 :+:      :+:    :+:   */
+/*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/11 19:56:15 by user              #+#    #+#             */
-/*   Updated: 2021/10/02 15:12:23 by mvaldeta         ###   ########.fr       */
+/*   Created: 2021/10/02 15:22:35 by mvaldeta          #+#    #+#             */
+/*   Updated: 2021/10/02 15:25:17 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 
-void	push_swap_error(void)
+/* sorry, norm made me do it */
+int	do_pa(t_frame *frame)
 {
-	write(2, "Error\n", 6);
-	exit(-1);
-	return ;
+	stack_push(frame->b, frame->a, frame->element);
+	write(1, "pa\n", 3);
+	return (0);
 }
 
-int	error_check(int *array, int array_size, long to_check)
+int	do_pb(t_frame *frame)
 {
-	int	freq;
-	int	i;
+	stack_push(frame->a, frame->b, frame->element);
+	write(1, "pb\n", 3);
+	return (0);
+}
 
-	freq = 0;
-	i = 0;
-	if (to_check > 2147483647 || to_check <= -2147483648)
-		push_swap_error();
-	if (!array)
-		return (0);
-	if (array_size == 1)
-		return (0);
-	while (i < array_size)
-	{
-		if (array[i] == to_check)
-			freq += 1;
-		i++;
-	}
-	if (freq > 1)
-		push_swap_error();
+int	do_rrr(t_frame *frame)
+{
+	do_ra(frame);
+	do_rb(frame);
+	write(1, "rrr\n", 4);
 	return (0);
 }
