@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 19:22:33 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/10/02 16:26:23 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/15 18:21:14 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,10 +213,9 @@ int     		do_rrr(t_frame *frame);
 
 /* solver */
 void			solver(t_frame *frame);
-void			algo(t_frame *frame);
-void 			do_solution_1(t_frame *frame);
-void 			do_solution_2(t_frame *frame);
-void 			do_solution_3(t_frame *frame);
+void 			do_small(t_frame *frame);
+void 			do_medium(t_frame *frame);
+void 			do_large(t_frame *frame);
 
 /* make */
 void 			make_guide_flags(t_frame *frame);
@@ -236,7 +235,14 @@ void    		print(t_stack_info *label, t_stack_link *ele, char id, int i);
 void    		stop_visualize(t_frame *frame);
 void    		clear_screen();
 
-/* merge */
-void merge(t_frame *frame);
+/* small gears*/
+void do_small_2(t_frame *frame);
+void do_small_3(t_frame *frame);
+void do_loop_small(t_frame *frame);
+void do_the_trick(t_frame *frame);
+
+/* large gears*/
+void split_in_chunks(t_frame *frame);
+void put_sorted(t_frame *t_frame, int i);
 
 #endif

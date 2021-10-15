@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 09:19:39 by user              #+#    #+#             */
-/*   Updated: 2021/10/02 16:39:40 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/15 17:34:40 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 int	main(int argc, char **argv)
 {
-	t_frame *frame;
+	t_frame	*frame;
+	int		temp[500];
+	int		i;
 
 	if (argc < 2)
 		return (1);
 	frame = NULL;
 	frame = init_frame(frame, argv);
-	int temp[argc - INDEX];
 	frame->a = new_stack();
 	frame->b = new_stack();
-	int i = 1;
+	i = 1;
 	while (argv[i])
 	{
 		frame->element = stack_append(frame->a, process(argv[i]));
