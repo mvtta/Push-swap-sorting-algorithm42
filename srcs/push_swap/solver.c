@@ -6,13 +6,13 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 11:17:01 by user              #+#    #+#             */
-/*   Updated: 2021/10/15 18:24:15 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/15 19:43:34 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 
-void do_small(t_frame *frame)
+void	do_small(t_frame *frame)
 {
 	if (frame->a->size > 3)
 	{
@@ -30,15 +30,15 @@ void do_small(t_frame *frame)
 			if (frame->b->head->value == find_biggest(frame, 'b'))
 				do_pa(frame);
 			if (frame->b->size < 1)
-				break;
+				break ;
 		}
 	}
 }
 
-void do_medium(t_frame *frame)
+void	do_medium(t_frame *frame)
 {
-	int i;
-	
+	int	i;
+
 	i = frame->guide_size - 1;
 	while (frame->a->size != 0)
 		do_pb(frame);
@@ -58,13 +58,13 @@ void do_medium(t_frame *frame)
 			PUSH = -1;
 		}
 	}
-	return;
+	return ;
 }
 
-void do_large(t_frame *frame)
+void	do_large(t_frame *frame)
 {
-	int i;
-	
+	int	i;
+
 	make_guide_flags(frame);
 	split_in_chunks(frame);
 	while (frame->a->size != 0)
@@ -73,10 +73,10 @@ void do_large(t_frame *frame)
 	PUSH = find_position(frame, frame->guide[i], 'b');
 	put_sorted(frame, i);
 	do_pa(frame);
-	return;
+	return ;
 }
 
-void solver(t_frame *frame)
+void	solver(t_frame *frame)
 {
 	make_guide(frame);
 	if (frame->a->size == 2)

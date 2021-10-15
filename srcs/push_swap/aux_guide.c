@@ -6,7 +6,7 @@
 /*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 16:25:01 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/10/08 17:52:50 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/15 19:51:56 by mvaldeta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void	swap(int *xp, int *yp)
 	*yp = temp;
 }
 
+void	make_loop(t_frame *frame)
+{
+	while (frame->i < frame->a->size)
+	{
+		frame->guide[frame->i] = frame->element->value;
+		frame->element = frame->element->next;
+		frame->i++;
+	}
+}
+
 void	make_guide(t_frame *frame)
 {
 	frame->element = frame->a->head;
@@ -29,12 +39,7 @@ void	make_guide(t_frame *frame)
 	frame->i = 0;
 	if (frame->guide == NULL)
 		return ;
-	while (frame->i < frame->a->size)
-	{
-		frame->guide[frame->i] = frame->element->value;
-		frame->element = frame->element->next;
-		frame->i++;
-	}
+	make_loop(frame);
 	frame->i = -1;
 	frame->j = 0;
 	while (frame->i++ < frame->a->size)
