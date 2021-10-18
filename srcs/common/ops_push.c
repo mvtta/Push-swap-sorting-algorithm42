@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ops_push.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvaldeta <mvaldeta@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: user <mvaldeta@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 15:22:35 by mvaldeta          #+#    #+#             */
-/*   Updated: 2021/10/02 15:25:17 by mvaldeta         ###   ########.fr       */
+/*   Updated: 2021/10/15 21:25:16 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pslib.h"
 
 /* sorry, norm made me do it */
+
 int	do_pa(t_frame *frame)
 {
 	stack_push(frame->b, frame->a, frame->element);

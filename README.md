@@ -20,7 +20,7 @@ by: mvaldeta
 
 ###### Rules  
 ```
-Create a ~Fast~ sorting algorithm with two stacks: A + B  
+Create a ~Limited~ sorting algorithm with two stacks: A && B  
 To do so, you only have the following operations at your disposal:  
 ```
 - SA  : swaps the TOP 2 elements of A 🔄    
@@ -35,42 +35,29 @@ To do so, you only have the following operations at your disposal:
 - RRA : rotates B ⤴️  
 - RRR : rotates A ⤴️ + rotates B ⤴️ at the same time.  
 
-###### Approach  
+###### Limits of operations 
 ```
-It's not implemented yet, but my idea is to divide into stack_a && stack_b even and uneven numbers. 
-According to the n-elements on each stack:  
-1) While first B > first A : Rotate & Push B:TOP -> A:END
-2) Then, pass even to B && uneven to A
-repeat step 1 & 2 until stack b is left with n <= 2
-3) Check pseudo sort for A
-4) Pass unsorted to B
-
-Generic conditions fort state "sorted"
-n1 + n2 <= n3
-
-if this happens Push into the other stack
-
-Generic conditions for intructions to happen
-SA  -> first A > second A
-SB  -> first B > second B
-SS  -> SA && SB == true
-PA  -> first A > first B
-PB  -> first B < first A 
-RA  -> first A > last B
-RB  -> first B > last A
-RR  -> RA && RB  == true
-RRA -> last A < first B
-RRB -> last B < first A
-RRR -> RRA && RRB == true || NONE of the conditions are true to restart the cycle
-
-Approach:
-
-1) Split Atack A in half to -> B
-2) Sort A in descending order
-3) Sort B in ascending order
-4) Do PA when BOTH stacks are sorted after queuing misplaced values.
+size of 3   : <= 3
+size of 5   : < 12
+size of 100 : < 900
+size of 500 : < 8500
 ```
-
+###### Approach Size <= 3 
+```
+handle individual cases of 2 and 3 in separate modules to be re-used later
+```
+###### Approach Size <= 5 
+```
+find median, split into A or B, if a stack has size of 2 or 3 fetches the modules previously outlined to solve
+```
+###### Approach Size <= 100 (I started at 60 just because)
+```
+pass all elements fromm stack A to B, and to insertion sort from B to A
+```
+###### Approach Size <= 500 
+```
+pass all elements from stack A to B, this time within a range: first chunks of the smallest increasing to the largests. Chunk size depends on the initial stack size. If biger than 100 elements, markers for each chunk will be provided by: size / 25
+```
 ###### Illustration 
 
 | stack A | stack B |
@@ -86,11 +73,6 @@ Approach:
 | 34 |    |
 | 4  |    | 
 ###### start
-
-###### Line of thought
-```
-loading
-```
 
 ###### Research  
 
