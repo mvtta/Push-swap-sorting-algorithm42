@@ -6,7 +6,7 @@ Push Swap
 sort data on a stack, with a limited set of instructions,  
 using the lowest possible number of actions 📚. 
 <br>
-status: ongoing
+status: pass @ 42 lisboa 2021
 <br>
 by: mvaldeta
 </h6>
